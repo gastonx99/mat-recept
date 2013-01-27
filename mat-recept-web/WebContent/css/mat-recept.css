@@ -1,0 +1,27 @@
+body {
+	
+}
+
+table th {
+	text-align: left;
+}
+
+tr.recipe-type-MEAT td {
+	color: red;
+}
+
+tr.recipe-type-VEGGIE td {
+	color: green;
+}
+
+tr.recipe-type-FISH td {
+	color: blue;
+}
+
+tr.recipe-type-POULTRY td {
+	color: orange;
+}
+
+tr.recipe-type-SIDE_ORDER td {
+	color: purple;
+}
