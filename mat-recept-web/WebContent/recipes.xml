@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<recipes>
+	<recipe>
+		<key>BIFF_STROGANOFF</key>
+		<name>Biff Stroganoff</name>
+		<reference>Sida 79</reference>
+		<type>MEAT</type>
+		<ingredients>
+			<ingredient>
+				<name>Lövbiff</name>
+				<amount>250</amount>
+				<unit>GRAM</unit>
+			</ingredient>
+		</ingredients>
+		<preparation>
+			<time>30</time>
+			<step>Strimla biffen</step>
+		</preparation>
+	</recipe>
+	<recipe>
+		<key>FISK_GRYTA_SAFFRAN_RAKOR</key>
+		<name>Lyxig fiskgryta med saffran och räkor</name>
+		<reference>Sida 17</reference>
+		<type>FISH</type>
+	</recipe>
+	<recipe>
+		<key>ROKT_LAX_ZUCCHINIPASTA</key>
+		<name>Rökt lax med zucchinipasta</name>
+		<type>FISH</type>
+	</recipe>
+	<recipe>
+		<key>LAXFILE_VITLOK</key>
+		<name>Laxfile med vitlök</name>
+		<type>FISH</type>
+	</recipe>
+	<recipe>
+		<key>FISK_PEPPARROT</key>
+		<name>Fisk med pepparrot</name>
+		<reference>Sida 19</reference>
+		<type>FISH</type>
+	</recipe>
+	<recipe>
+		<key>LAX_SPENATBADD</key>
+		<name>Lax på spenatbädd</name>
+		<reference>Sida 23</reference>
+		<type>FISH</type>
+	</recipe>
+	<recipe>
+		<key>TONFISK_SAS_PEPPRIG</key>
+		<name>Pepprig tonfisksås</name>
+		<reference>Sida 30</reference>
+		<type>FISH</type>
+	</recipe>
+	<recipe>
+		<key>FISKBURGARE</key>
+		<name>Saftig fiskburgare</name>
+		<reference>Sida 33</reference>
+		<type>FISH</type>
+	</recipe>
+	<recipe>
+		<key>KYCKLINGBURGARE</key>
+		<name>Kycklingburgare</name>
+		<reference>Sida 43</reference>
+		<type>POULTRY</type>
+	</recipe>
+	<recipe>
+		<key>BOLOGNESE_VEG</key>
+		<name>Vegetarisk bolognese</name>
+		<reference>Sida 53</reference>
+		<type>VEGGIE</type>
+	</recipe>
+	<recipe>
+		<key>BOLOGNESE_MEAT</key>
+		<name>Köttfärsbolognese</name>
+		<reference>Sida 53</reference>
+		<type>MEAT</type>
+	</recipe>
+	<recipe>
+		<key>KIKARTSBIFFAR_ZUCCHINI</key>
+		<name>Kikärtsbiffar med zucchini</name>
+		<reference>Sida 61</reference>
+		<type>VEGGIE</type>
+	</recipe>
+	<recipe>
+		<key>LINSSOPPA_MOROT</key>
+		<name>Linssoppa med morot</name>
+		<reference>Sida 63</reference>
+		<type>VEGGIE</type>
+	</recipe>
+	<recipe>
+		<key>LAMMFARSKEBAB</key>
+		<name>Lammfärskebab med mynta och kanel</name>
+		<reference>Sida 71</reference>
+		<type>MEAT</type>
+	</recipe>
+	<recipe>
+		<key>FLASKFILE_CURRY</key>
+		<name>Grillad fläskfilé med mild currysås</name>
+		<reference>Sida 75</reference>
+		<type>MEAT</type>
+	</recipe>
+	<recipe>
+		<key>VARDAGSBIFFAR</key>
+		<name>Vardagsbiffar</name>
+		<reference>Sida 84</reference>
+		<type>MEAT</type>
+	</recipe>
+	<recipe>
+		<key>TERIYAKILAX</key>
+		<name>Teriyakilax</name>
+		<reference>Sida 23</reference>
+		<type>FISH</type>
+	</recipe>
+	<recipe>
+		<key>COLESLAW</key>
+		<name>Coleslaw</name>
+		<reference>Sida 89</reference>
+		<type>SIDE_ORDER</type>
+		<ingredients>
+			<ingredient>
+				<name>Vitkål</name>
+				<amount>1</amount>
+				<unit>CLOVE</unit>
+			</ingredient>
+		</ingredients>
+	</recipe>
+	<recipe>
+		<key>UNGSROSTADE_ROTFRUKTER</key>
+		<name>Ungsrostade rotfrukter</name>
+		<reference>Sida 89</reference>
+		<type>SIDE_ORDER</type>
+	</recipe>
+	<recipe>
+		<key>SPENATCREME</key>
+		<name>Spenatcrème med vitlök</name>
+		<reference>Sida 91</reference>
+		<type>SIDE_ORDER</type>
+	</recipe>
+	<recipe>
+		<key>BLOMKALSMOS</key>
+		<name>Blomkålsmos</name>
+		<reference>Sida 19</reference>
+		<type>SIDE_ORDER</type>
+	</recipe>
+	<recipe>
+		<key>BROCCOLI</key>
+		<name>Lättkokt broccoli</name>
+		<reference>Sida 19</reference>
+		<type>SIDE_ORDER</type>
+	</recipe>
+	<recipe>
+		<key>ROD_PAPRIKA</key>
+		<name>Röd paprika</name>
+		<reference>Sida 19</reference>
+		<type>SIDE_ORDER</type>
+	</recipe>
+	<recipe>
+		<key>KOKTA_RODBETOR</key>
+		<name>Kokta rödbetor</name>
+		<reference>Sida 23</reference>
+		<type>SIDE_ORDER</type>
+	</recipe>
+	<recipe>
+		<key>GUACAMOLE</key>
+		<name>Guacamole</name>
+		<reference>Sida 33</reference>
+		<type>SIDE_ORDER</type>
+	</recipe>
+	<recipe>
+		<key>RODBETSTSATSIKI</key>
+		<name>Rödbetstsatsiki</name>
+		<reference>Sida 43</reference>
+		<type>SIDE_ORDER</type>
+	</recipe>
+	<recipe>
+		<key>TOMAT_RODLOK_ENKEL</key>
+		<name>Tomat och rödlöksringar</name>
+		<reference>Sida 43</reference>
+		<type>SIDE_ORDER</type>
+	</recipe>
+	<recipe>
+		<key>TOMATSALLAD_RODLOK</key>
+		<name>Tomatsallad med rödlök</name>
+		<reference>Sida 71</reference>
+		<type>SIDE_ORDER</type>
+	</recipe>
+	<recipe>
+		<key>TSATSIKI_GURKA</key>
+		<name>Tsatsiki med gurka</name>
+		<reference>Sida 71</reference>
+		<type>SIDE_ORDER</type>
+	</recipe>
+	<recipe>
+		<key>GRONSAKSMOS</key>
+		<name>Grönsaksmos</name>
+		<reference>Sida 84</reference>
+		<type>SIDE_ORDER</type>
+	</recipe>
+	<recipe>
+		<key>ROTMOS_VARIERAD</key>
+		<name>Rotmos varierad</name>
+		<type>SIDE_ORDER</type>
+	</recipe>
+	<recipe>
+		<key>GRONSALLAD</key>
+		<name>Grönsallad</name>
+		<type>SIDE_ORDER</type>
+	</recipe>
+</recipes>
