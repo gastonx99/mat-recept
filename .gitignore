@@ -5,7 +5,3 @@
 *.war
 *.ear
 
-# Eclipse files
-.metadata
-.settings
-.project
