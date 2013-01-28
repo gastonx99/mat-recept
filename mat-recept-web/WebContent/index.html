@@ -5,20 +5,53 @@
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/jquery.xml2json.js"></script>
 <script type="text/javascript" src="js/mat-recept.js"></script>
-<link rel="stylesheet" type="text/css" href="css/mat-recept.css"/>
+<link rel="stylesheet" type="text/css" href="css/mat-recept.css" />
 <title>Menyer</title>
 </head>
 <body>
-
-	<table>
-		<caption>Recept</caption>
-		<thead>
-			<tr>
-				<th>Namn</th>
-			</tr>
-		</thead>
-		<tbody id="recipe-table-body"/>
+	<table width="100%">
+		<colgroup>
+			<col width="50%" />
+			<col />
+		</colgroup>
+		<tr>
+			<td>
+				<table id="recipe-table">
+					<caption>Recept</caption>
+					<thead>
+						<tr>
+							<th>Namn</th>
+						</tr>
+					</thead>
+					<tbody id="recipe-table-body" />
+				</table>
+			</td>
+			<td>
+				<table id="menu-table">
+					<caption>Menyer</caption>
+					<thead>
+						<tr>
+							<th>Namn</th>
+						</tr>
+					</thead>
+					<tbody id="menu-table-body" />
+				</table>
+			</td>
+		</tr>
 	</table>
 
+	<div id="daily-menu-template" class="daily-menu" style="display: none;">
+		<h2 class="day"></h2>
+		<div class="lunch">
+			<h3>Lunch</h3>
+			<ul class="dish">
+			</ul>
+		</div>
+		<div class="dinner">
+			<h3>Middag</h3>
+			<ul class="dish">
+			</ul>
+		</div>
+	</div>
 </body>
 </html>

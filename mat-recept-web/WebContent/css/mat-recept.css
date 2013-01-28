@@ -2,6 +2,14 @@ body {
 	
 }
 
+table caption {
+	text-align: left;
+}
+
+table td {
+	vertical-align: top;
+}
+
 table th {
 	text-align: left;
 }
@@ -24,4 +32,8 @@ tr.recipe-type-POULTRY td {
 
 tr.recipe-type-SIDE_ORDER td {
 	color: purple;
+}
+
+h2.day {
+	
 }
