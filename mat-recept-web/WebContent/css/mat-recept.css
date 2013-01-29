@@ -1,5 +1,6 @@
 body {
-	
+	font-family: Verdana;
+	font-size: small;
 }
 
 table caption {
@@ -34,6 +35,30 @@ tr.recipe-type-SIDE_ORDER td {
 	color: purple;
 }
 
-h2.day {
-	
+span.expanded-state {
+	color: purple;
+	cursor: pointer;
+}
+
+span.recipe-name {
+	cursor: pointer;
+}
+
+div.daily-menu h2,h3 {
+	margin-top: 5px;
+	margin-bottom: 0px;
+}
+
+div.daily-menu h2 {
+	font-size: medium;
+}
+
+div.daily-menu h3 {
+	font-size: small;
+	font-style: italic;
+}
+
+ul.dish {
+	list-style: circle;
+	margin: 0;
 }

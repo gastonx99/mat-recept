@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<constants>
+	<constant>
+		<type>WEEKDAY</type>
+		<key>MONDAY</key>
+		<value>Måndag</value>
+	</constant>
+	<constant>
+		<type>WEEKDAY</type>
+		<key>TUESDAY</key>
+		<value>Tisdag</value>
+	</constant>
+	<constant>
+		<type>WEEKDAY</type>
+		<key>WEDNESDAY</key>
+		<value>Onsdag</value>
+	</constant>
+	<constant>
+		<type>WEEKDAY</type>
+		<key>THURSDAY</key>
+		<value>Torsdag</value>
+	</constant>
+	<constant>
+		<type>WEEKDAY</type>
+		<key>FRIDAY</key>
+		<value>Fredag</value>
+	</constant>
+	<constant>
+		<type>WEEKDAY</type>
+		<key>SATURDAY</key>
+		<value>Lördag</value>
+	</constant>
+	<constant>
+		<type>WEEKDAY</type>
+		<key>SUNDAY</key>
+		<value>Söndag</value>
+	</constant>
+</constants>

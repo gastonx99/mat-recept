@@ -49,13 +49,6 @@
 					<recipeKey>GRONSALLAD</recipeKey>
 				</dish>
 			</lunch>
-			<dinner>
-				<dish>
-					<recipeKey>LAXFILE_VITLOK</recipeKey>
-					<recipeKey>GRONSAKSMOS</recipeKey>
-					<recipeKey>GRONSALLAD</recipeKey>
-				</dish>
-			</dinner>
 		</day>
 	</weeklyMenu>
 </menues>

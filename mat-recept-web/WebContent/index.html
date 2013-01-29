@@ -2,8 +2,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/jquery.xml2json.js"></script>
+<script type="text/javascript" src="js-external/jquery.min.js"></script>
+<script type="text/javascript" src="js-external/jquery-ui-1.10.0.custom.min.js"></script>
+<script type="text/javascript" src="js-external/jquery.xml2json.js"></script>
 <script type="text/javascript" src="js/mat-recept.js"></script>
 <link rel="stylesheet" type="text/css" href="css/mat-recept.css" />
 <title>Menyer</title>
@@ -40,17 +41,19 @@
 		</tr>
 	</table>
 
-	<div id="daily-menu-template" class="daily-menu" style="display: none;">
-		<h2 class="day"></h2>
-		<div class="lunch">
-			<h3>Lunch</h3>
-			<ul class="dish">
-			</ul>
-		</div>
-		<div class="dinner">
-			<h3>Middag</h3>
-			<ul class="dish">
-			</ul>
+	<div id="daily-menu-template" style="display: none;">
+		<div class="daily-menu">
+			<h2 class="day"></h2>
+			<div class="lunch">
+				<h3>Lunch</h3>
+				<ul class="dish">
+				</ul>
+			</div>
+			<div class="dinner">
+				<h3>Middag</h3>
+				<ul class="dish">
+				</ul>
+			</div>
 		</div>
 	</div>
 </body>
