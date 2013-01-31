@@ -1,10 +1,104 @@
 $(document).ready(function() {
+	$('#xmlButton').click(function() {
+		postMenuesXML(toXML());
+	});
 	$.ajax({
 		url : 'constants.xml',
 		success : handleConstantsXML,
 		dataType : 'xml'
 	});
 });
+
+function postMenuesXML(xmlStr) {
+	var indata = {
+		username : 'gaston',
+		xml : xmlStr
+	};
+	$.post('php/saveMenues.php', indata, function(data) {
+		alert('success');
+	}).done(function() {
+		alert("second success");
+	}).fail(function() {
+		alert("error");
+	});
+}
+
+function toXML() {
+	var menues = {};
+	menues.weeklyMenu = [];
+	function toJsonMeal($li, meal) {
+		meal.dish = {
+			recipeKey : []
+		};
+
+		$li.each(function() {
+			var recipe = $(this).data('recipe');
+			meal.dish.recipeKey.push(recipe.key);
+		});
+	}
+	function toJsonWeeklyMenu($trWeeklyMenu) {
+		var weeklyMenuData = $trWeeklyMenu.data('weeklyMenu');
+		if (typeof (weeklyMenuData) != "undefined") {
+			var wm = {
+				key : weeklyMenuData.key,
+				name : weeklyMenuData.name,
+				day : []
+			};
+			menues.weeklyMenu.push(wm);
+
+			var $trPlaceholder = $('#weeklyMenu-data-' + weeklyMenuData.key);
+
+			var weekdays = findConstants('WEEKDAY');
+			for ( var i1 = 0; i1 < weekdays.length; i1++) {
+				var day = {
+					key : weekdays[i1].key
+				};
+
+				var $liLunch = $trPlaceholder.find('div.' + weekdays[i1].key + ' div.lunch ul.dish li').not('.empty');
+				if ($liLunch.size() > 0) {
+					day.lunch = {};
+					toJsonMeal($liLunch, day.lunch);
+				}
+				var $liDinner = $trPlaceholder.find('div.' + weekdays[i1].key + ' div.dinner ul.dish li').not('.empty');
+				if ($liDinner.size() > 0) {
+					day.dinner = {};
+					toJsonMeal($liDinner, day.dinner);
+				}
+
+				wm.day.push(day);
+			}
+		}
+	}
+	var doc = document.implementation.createDocument(null, null, null);
+	function toXML(obj, nodeName) {
+		var parentNode = doc.createElement(nodeName);
+		if (typeof (obj) === 'string') {
+			var text = doc.createTextNode(obj);
+			parentNode.appendChild(text);
+		} else {
+			for ( var key in obj) {
+				if (Array.isArray(obj[key])) {
+					for ( var i1 = 0; i1 < obj[key].length; i1++) {
+						parentNode.appendChild(toXML(obj[key][i1], key));
+					}
+				} else {
+					parentNode.appendChild(toXML(obj[key], key));
+				}
+			}
+		}
+		return parentNode;
+	}
+	$('#menu-table-body tr').each(function() {
+		toJsonWeeklyMenu($(this));
+	});
+	var node = toXML(menues, 'menues');
+	// var newDoc = JXON.unbuild(menues);
+	doc.appendChild(node);
+	$('#xmlContainer').text((new XMLSerializer()).serializeToString(doc));
+	// $('#xmlContainer').text(JSON.stringify(menues));
+	return (new XMLSerializer()).serializeToString(doc);
+
+}
 
 function loadRecipes() {
 	$.ajax({
@@ -16,7 +110,7 @@ function loadRecipes() {
 
 function loadMenues() {
 	$.ajax({
-		url : 'menues.xml',
+		url : 'php/menues.php',
 		success : handleMenuesXML,
 		dataType : 'xml'
 	});
@@ -58,11 +152,9 @@ function handleMenuesXML(xml) {
 }
 
 function createRecipeRow(recipe) {
-	var $tr = $('<tr>').addClass('recipe-type-' + recipe.type).addClass(
-			'collapsed');
+	var $tr = $('<tr>').addClass('recipe-type-' + recipe.type).addClass('collapsed');
 	var $icon = $('<span>').addClass('expanded-state').html(COLLAPSED_ICON);
-	var $recipe = $('<span>').addClass('recipe-name').text(recipe.name).data(
-			'recipe', recipe);
+	var $recipe = $('<span>').addClass('recipe-name').text(recipe.name).data('recipe', recipe);
 	var $td = $('<td>');
 	$td.append($icon).append($recipe);
 	$tr.append($td);
@@ -74,8 +166,7 @@ function createMenuRow(weeklyMenu) {
 	var $tr = $('<tr>').attr('id', 'weeklyMenu-' + weeklyMenu.key);
 	$tr.addClass('collapsed');
 	$tr.data('weeklyMenu', weeklyMenu);
-	var text = '<span class="expanded-state">' + COLLAPSED_ICON + '</span>'
-			+ weeklyMenu.name;
+	var text = '<span class="expanded-state">' + COLLAPSED_ICON + '</span>' + weeklyMenu.name;
 	$tr.append($('<td>').html(text));
 
 	$('#menu-table-body').append($tr);
@@ -127,26 +218,25 @@ function showWeeklyMenu(weeklyMenu) {
 			$td.append($('#daily-menu-template').html());
 			$td.find('h2.day').text(weekdays[i1].value);
 
+			$td.find('div.daily-menu').addClass(weekdays[i1].key);
+
 			var $ulLunch = $td.find('div.lunch ul.dish');
 			var $ulDinner = $td.find('div.dinner ul.dish');
-			if (weeklyMenuDay === 'NOT_PRESENT'
-					|| !hasRecipeKeys(weeklyMenuDay.lunch)) {
+			if (weeklyMenuDay === 'NOT_PRESENT' || !hasRecipeKeys(weeklyMenuDay.lunch)) {
 				var $li = $('<li>').text(LI_EMPTY).addClass('empty');
 				$ulLunch.append($li);
 			} else {
 				for ( var i2 = 0; i2 < weeklyMenuDay.lunch.dish.recipeKey.length; i2++) {
-					addMealItem($ulLunch,
-							weeklyMenuDay.lunch.dish.recipeKey[i2]);
+					addMealItem($ulLunch, weeklyMenuDay.lunch.dish.recipeKey[i2]);
 				}
 			}
-			if (weeklyMenuDay === 'NOT_PRESENT'
-					|| !hasRecipeKeys(weeklyMenuDay.dinner)) {
-				var $li = $('<li>').text(LI_EMPTY).addClass('empty');;
+			if (weeklyMenuDay === 'NOT_PRESENT' || !hasRecipeKeys(weeklyMenuDay.dinner)) {
+				var $li = $('<li>').text(LI_EMPTY).addClass('empty');
+				;
 				$ulDinner.append($li);
 			} else {
 				for ( var i2 = 0; i2 < weeklyMenuDay.dinner.dish.recipeKey.length; i2++) {
-					addMealItem($ulDinner,
-							weeklyMenuDay.dinner.dish.recipeKey[i2]);
+					addMealItem($ulDinner, weeklyMenuDay.dinner.dish.recipeKey[i2]);
 				}
 			}
 			$tr.append($td);
