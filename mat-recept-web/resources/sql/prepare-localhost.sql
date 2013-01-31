@@ -1,4 +1,4 @@
-create datatabase if not exists matrecept;
-use matrecept;
-create user matrecept@localhost identified by 'Milano93';
-grant all on matrecept.* to matrecept@localhost;
+create database dandel_se;
+use dandel_se;
+create user dandel_se@localhost identified by 'Milano93';
+grant all on dandel_se.* to dandel_se@localhost;

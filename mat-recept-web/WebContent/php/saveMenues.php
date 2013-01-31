@@ -1,6 +1,6 @@
 <?php
   require_once 'KLogger.php';
-  
+  require_once('init.php');
   
   $log = new KLogger ( "log.log" , KLogger::DEBUG );
   
@@ -14,10 +14,6 @@
   $req_dump = print_r($_REQUEST, TRUE);
   $log->LogDebug($req_dump);
   */
-  
- /* connect to the db */
-  $link = mysql_connect('localhost','matrecept','Milano93') or die('Cannot connect to the DB');
-  mysql_select_db('matrecept',$link) or die('Cannot select the DB');
   
   $query = "UPDATE menues SET xml = '$xml' WHERE username = '$username'";
   $log->LogDebug($query);
