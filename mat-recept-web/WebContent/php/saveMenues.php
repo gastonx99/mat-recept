@@ -23,15 +23,6 @@
   $log->LogDebug($query);
 
   $result = mysql_query($query,$link) or die('Errant query:  '.$query);  
-  /*
-  $post = mysql_fetch_assoc($result);
-  
-  if(is_array($post)) {
-  	foreach($post as $key => $value) {
-  		echo $value;
-  	}
-  }
-  */
   
   /* disconnect from the db */
   @mysql_close($link);  

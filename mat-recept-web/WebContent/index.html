@@ -3,10 +3,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <script type="text/javascript" src="js-external/jquery.min.js"></script>
-<script type="text/javascript"
-	src="js-external/jquery-ui-1.10.0.custom.min.js"></script>
+<script type="text/javascript" src="js-external/jquery-ui-1.10.0.custom.min.js"></script>
 <script type="text/javascript" src="js-external/jquery.xml2json.js"></script>
-<script type="text/javascript" src="js/JXON.js"></script>
 <script type="text/javascript" src="js/mat-recept.js"></script>
 <link rel="stylesheet" type="text/css" href="css/mat-recept.css" />
 <title>Menyer</title>
@@ -15,7 +13,6 @@
 	<table width="100%">
 		<colgroup>
 			<col width="30%" />
-			<col />
 			<col />
 		</colgroup>
 		<tr>
@@ -30,7 +27,7 @@
 					<tbody id="recipe-table-body" />
 				</table>
 			</td>
-			<td>
+			<td><input type="button" id="xmlButton" value="Spara" />
 				<table id="menu-table">
 					<caption>Menyer</caption>
 					<thead>
@@ -39,14 +36,13 @@
 						</tr>
 					</thead>
 					<tbody id="menu-table-body" />
-				</table>
-			</td>
-			<td>
-				<input type="button" id="xmlButton" name="XML" value="XML"/>
-				<div id="xmlContainer" style="height: 800px; width: 600px; background-color: cyan"></div>
-			</td>
+				</table></td>
 		</tr>
 	</table>
+
+	<div id="trashcan-container" style="display: none; position: absolute; z-index: 50">
+		<img src="images/trashcan.jpg" />
+	</div>
 
 	<div id="daily-menu-template" style="display: none;">
 		<div class="daily-menu">

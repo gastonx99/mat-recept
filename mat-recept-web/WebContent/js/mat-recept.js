@@ -7,6 +7,34 @@ $(document).ready(function() {
 		success : handleConstantsXML,
 		dataType : 'xml'
 	});
+	$('#trashcan-container').droppable({
+		accept : "li.mealitem",
+		tolerance : "pointer",
+		drop : function(event, ui) {
+			var $li = ui.draggable;
+			var $ul = $li.parent();
+			console.log($ul.children('li').size());
+			$ul.children('li').each(function() {
+				console.log($(this).html());
+			});
+			if ($ul.children('li.mealitem').size() == 1) {
+				addEmptyMenuItem($ul);
+			}
+			$li.remove();
+			var $trashcanContainer = $('#trashcan-container');
+			$trashcanContainer.hide();
+		},
+		over : function(event, ui) {
+			$(this).css({
+				border : '1px solid red'
+			});
+		},
+		out : function(event, ui) {
+			$(this).css({
+				border : '1px solid black'
+			});
+		}
+	});
 });
 
 function postMenuesXML(xmlStr) {
@@ -16,8 +44,6 @@ function postMenuesXML(xmlStr) {
 	};
 	$.post('php/saveMenues.php', indata, function(data) {
 		alert('success');
-	}).done(function() {
-		alert("second success");
 	}).fail(function() {
 		alert("error");
 	});
@@ -64,7 +90,6 @@ function toXML() {
 					day.dinner = {};
 					toJsonMeal($liDinner, day.dinner);
 				}
-
 				wm.day.push(day);
 			}
 		}
@@ -94,8 +119,6 @@ function toXML() {
 	var node = toXML(menues, 'menues');
 	// var newDoc = JXON.unbuild(menues);
 	doc.appendChild(node);
-	$('#xmlContainer').text((new XMLSerializer()).serializeToString(doc));
-	// $('#xmlContainer').text(JSON.stringify(menues));
 	return (new XMLSerializer()).serializeToString(doc);
 
 }
@@ -177,10 +200,6 @@ function createMenuRow(weeklyMenu) {
 	$('#menu-table-body').append($tr);
 }
 
-function toggleRecipeExpandedState($tr) {
-
-}
-
 function findWeeklyMenuDay(weeklyMenu, dayKey) {
 	for ( var i1 = 0; i1 < weeklyMenu.day.length; i1++) {
 		if (weeklyMenu.day[i1].key === dayKey) {
@@ -201,8 +220,35 @@ function hasRecipeKeys(meal) {
 
 function addMealItem($ul, recipeKey) {
 	var recipe = findRecipe(recipeKey);
-	var $li = $('<li>').text(recipe.name).data('recipe', recipe);
+	var $li = $('<li>').addClass('mealitem').text(recipe.name).data('recipe', recipe);
 	$ul.append($li);
+	return $li;
+}
+
+function addEmptyMenuItem($ul) {
+	var $li = $('<li>').text(LI_EMPTY).addClass('empty');
+	$ul.append($li);
+}
+
+function makeMealItemDraggable($li) {
+	$li.draggable({
+		revert : true,
+		start : function(event, ui) {
+			var $trashcanContainer = $('#trashcan-container');
+			$trashcanContainer.css({
+				left : event.pageX - 150,
+				top : event.pageY - 20,
+				border : '1px solid black'
+			});
+			$trashcanContainer.show();
+		},
+		stop : function(event, ui) {
+			var $trashcanContainer = $('#trashcan-container');
+			$trashcanContainer.hide();
+		}
+
+	});
+
 }
 
 function showWeeklyMenu(weeklyMenu) {
@@ -223,20 +269,25 @@ function showWeeklyMenu(weeklyMenu) {
 			var $ulLunch = $td.find('div.lunch ul.dish');
 			var $ulDinner = $td.find('div.dinner ul.dish');
 			if (weeklyMenuDay === 'NOT_PRESENT' || !hasRecipeKeys(weeklyMenuDay.lunch)) {
-				var $li = $('<li>').text(LI_EMPTY).addClass('empty');
-				$ulLunch.append($li);
+				addEmptyMenuItem($ulLunch);
 			} else {
-				for ( var i2 = 0; i2 < weeklyMenuDay.lunch.dish.recipeKey.length; i2++) {
-					addMealItem($ulLunch, weeklyMenuDay.lunch.dish.recipeKey[i2]);
+				if (typeof (weeklyMenuDay.lunch.dish.recipeKey) === 'string') {
+					addMealItem($ulLunch, weeklyMenuDay.lunch.dish.recipeKey);
+				} else {
+					for ( var i2 = 0; i2 < weeklyMenuDay.lunch.dish.recipeKey.length; i2++) {
+						addMealItem($ulLunch, weeklyMenuDay.lunch.dish.recipeKey[i2]);
+					}
 				}
 			}
 			if (weeklyMenuDay === 'NOT_PRESENT' || !hasRecipeKeys(weeklyMenuDay.dinner)) {
-				var $li = $('<li>').text(LI_EMPTY).addClass('empty');
-				;
-				$ulDinner.append($li);
+				addEmptyMenuItem($ulDinner);
 			} else {
-				for ( var i2 = 0; i2 < weeklyMenuDay.dinner.dish.recipeKey.length; i2++) {
-					addMealItem($ulDinner, weeklyMenuDay.dinner.dish.recipeKey[i2]);
+				if (typeof (weeklyMenuDay.dinner.dish.recipeKey) === 'string') {
+					addMealItem($ulDinner, weeklyMenuDay.dinner.dish.recipeKey);
+				} else {
+					for ( var i2 = 0; i2 < weeklyMenuDay.dinner.dish.recipeKey.length; i2++) {
+						addMealItem($ulDinner, weeklyMenuDay.dinner.dish.recipeKey[i2]);
+					}
 				}
 			}
 			$tr.append($td);
@@ -244,6 +295,20 @@ function showWeeklyMenu(weeklyMenu) {
 		}
 		$tdPlaceholder.append($table);
 		$trPlaceholder.append($tdPlaceholder);
+		$trPlaceholder.find('li.mealitem').each(function() {
+			makeMealItemDraggable($(this));
+		});
+		$trPlaceholder.find('ul.dish').droppable({
+			accept : "span.recipe-name",
+			tolerance : "pointer",
+			drop : function(event, ui) {
+				var recipe = ui.draggable.data('recipe');
+				var $ul = $(event.target);
+				$ul.find('li.empty').remove();
+				var $li = addMealItem($ul, recipe.key);
+				makeMealItemDraggable($li);
+			}
+		});
 	}
 	$trPlaceholder.show();
 }
@@ -289,17 +354,6 @@ function toggleWeeklyMenuExpandedState($tr) {
 		$tr.removeClass('collapsed');
 		$tr.addClass('expanded');
 		showWeeklyMenu(weeklyMenu);
-
-		$('ul.dish').droppable({
-			accept : "span.recipe-name",
-			drop : function(event, ui) {
-				var recipe = ui.draggable.data('recipe');
-				var $ul = $(event.target);
-				$ul.find('li.empty').remove();
-				addMealItem($ul, recipe.key);
-			}
-		});
-
 	} else {
 		$tr.find('.expanded-state').html(COLLAPSED_ICON);
 		$tr.addClass('collapsed');
