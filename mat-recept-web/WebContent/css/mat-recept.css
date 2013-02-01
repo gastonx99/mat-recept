@@ -16,27 +16,27 @@ table th {
 }
 
 span.recipe-type-MEAT {
-	color: red;
+	color: darkred;
 }
 
 span.recipe-type-VEGGIE {
-	color: darkolivegreen;
+	color: darkgreen;
 }
 
 span.recipe-type-FISH {
-	color: blue;
+	color: indigo;
 }
 
 span.recipe-type-POULTRY {
-	color: orange;
+	color: chocolate;
 }
 
 span.recipe-type-SIDE_ORDER_ROOT {
-	color: green;
+	color: forestgreen;
 }
 
 span.recipe-type-SIDE_ORDER_GREEN {
-	color: springgreen;
+	color: lightseagreen;
 }
 
 span.expanded-state {
@@ -48,6 +48,10 @@ span.recipe-name {
 	cursor: pointer;
 }
 
+span.weekly-menu-name {
+	color: darkred;
+}
+
 div.daily-menu h2,h3 {
 	margin-top: 5px;
 	margin-bottom: 0px;
@@ -55,14 +59,22 @@ div.daily-menu h2,h3 {
 
 div.daily-menu h2 {
 	font-size: medium;
+	font-weight: normal;
 }
 
 div.daily-menu h3 {
 	font-size: small;
 	font-style: italic;
+	font-weight: normal;
 }
 
 ul.dish {
 	list-style: circle;
 	margin: 0;
+}
+
+#trashcan-container {
+	display: none;
+	position: absolute;
+	z-index: 50;
 }

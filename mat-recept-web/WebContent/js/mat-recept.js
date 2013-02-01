@@ -50,49 +50,45 @@ function postMenuesXML(xmlStr) {
 }
 
 function toXML() {
-	var menues = {};
-	menues.weeklyMenu = [];
-	function toJsonMeal($li, meal) {
-		meal.dish = {
-			recipeKey : []
+	var menues = {
+		weeklyMenu : []
+	};
+	function toJsonMeal($li) {
+		var meal = {
+			dish : {
+				recipeKey : []
+			}
 		};
-
 		$li.each(function() {
 			var recipe = $(this).data('recipe');
 			meal.dish.recipeKey.push(recipe.key);
 		});
+		return meal;
 	}
 	function toJsonWeeklyMenu($trWeeklyMenu) {
 		var weeklyMenuData = $trWeeklyMenu.data('weeklyMenu');
-		if (typeof (weeklyMenuData) != "undefined") {
-			var wm = {
-				key : weeklyMenuData.key,
-				name : weeklyMenuData.name,
-				day : []
+		var wm = {
+			key : weeklyMenuData.key,
+			name : weeklyMenuData.name,
+			day : []
+		};
+
+		var weekdays = findConstants('WEEKDAY');
+		for ( var i1 = 0; i1 < weekdays.length; i1++) {
+			var day = {
+				key : weekdays[i1].key
 			};
-			menues.weeklyMenu.push(wm);
-
-			var $trPlaceholder = $('#weeklyMenu-data-' + weeklyMenuData.key);
-
-			var weekdays = findConstants('WEEKDAY');
-			for ( var i1 = 0; i1 < weekdays.length; i1++) {
-				var day = {
-					key : weekdays[i1].key
-				};
-
-				var $liLunch = $trPlaceholder.find('div.' + weekdays[i1].key + ' div.lunch ul.dish li').not('.empty');
-				if ($liLunch.size() > 0) {
-					day.lunch = {};
-					toJsonMeal($liLunch, day.lunch);
-				}
-				var $liDinner = $trPlaceholder.find('div.' + weekdays[i1].key + ' div.dinner ul.dish li').not('.empty');
-				if ($liDinner.size() > 0) {
-					day.dinner = {};
-					toJsonMeal($liDinner, day.dinner);
-				}
-				wm.day.push(day);
+			var $liLunch = $trWeeklyMenu.find('div.' + weekdays[i1].key + ' div.lunch ul.dish li').not('.empty');
+			if ($liLunch.size() > 0) {
+				day.lunch = toJsonMeal($liLunch);
 			}
+			var $liDinner = $trWeeklyMenu.find('div.' + weekdays[i1].key + ' div.dinner ul.dish li').not('.empty');
+			if ($liDinner.size() > 0) {
+				day.dinner = toJsonMeal($liDinner);
+			}
+			wm.day.push(day);
 		}
+		return wm;
 	}
 	var doc = document.implementation.createDocument(null, null, null);
 	function toXML(obj, nodeName) {
@@ -113,8 +109,8 @@ function toXML() {
 		}
 		return parentNode;
 	}
-	$('#menu-table-body tr').each(function() {
-		toJsonWeeklyMenu($(this));
+	$('#menu-table-body tr').not('#menu-table-body-row-template').each(function() {
+		menues.weeklyMenu.push(toJsonWeeklyMenu($(this)));
 	});
 	var node = toXML(menues, 'menues');
 	// var newDoc = JXON.unbuild(menues);
@@ -166,13 +162,47 @@ function handleRecipesXML(xml) {
 }
 
 function handleMenuesXML(xml) {
+	function getKeyForYearWeek(yearweek) {
+		return yearweek.year + (yearweek.week < 10 ? '0' : '') + yearweek.week;
+	}
+	function existsForWeek(menues, yearweek) {
+		var key = getKeyForYearWeek(yearweek);
+		for ( var i1 = 0; i1 < menues.weeklyMenu.length; i1++) {
+			if (menues.weeklyMenu[i1].key === key) {
+				return true;
+			}
+		}
+		return false;
+	}
+	function addFutureWeeksIfNotPresent(menues) {
+		var currentDate = new Date();
+		for ( var i1 = 0; i1 < 4; i1++) {
+			var d = new Date();
+			d.setDate(currentDate.getDate() + (i1 * 7 + 7));
+			var yearweek = getWeekNumber(d);
+			if (!existsForWeek(menues, yearweek)) {
+				var wm = {
+					key : getKeyForYearWeek(yearweek),
+					name : 'Vecka ' + yearweek.week,
+					day : []
+				};
+				menues.weeklyMenu.push(wm);
+			}
+		}
+	}
 	var menues = $.xml2json(xml);
+	addFutureWeeksIfNotPresent(menues);
 	for ( var i1 = 0; i1 < menues.weeklyMenu.length; i1++) {
 		createMenuRow(menues.weeklyMenu[i1]);
 	}
-	var currentWeek = getWeekNumber(new Date());
+	var currentDate = new Date();
+	var currentWeek = getWeekNumber(currentDate);
+
 	var $tr = $('#weeklyMenu-' + currentWeek.year + (currentWeek.week < 10 ? '0' : '') + currentWeek.week);
 	toggleWeeklyMenuExpandedState($tr);
+	$('#menu-table-body span.expanded-state').click(function() {
+		toggleWeeklyMenuExpandedState($(this).parent().parent());
+	});
 }
 
 function createRecipeRow(recipe) {
@@ -184,17 +214,12 @@ function createRecipeRow(recipe) {
 }
 
 function createMenuRow(weeklyMenu) {
-	var $tr = $('<tr>').attr('id', 'weeklyMenu-' + weeklyMenu.key);
+	var $tr = $('<tr>').attr('id', 'weeklyMenu-' + weeklyMenu.key).html($('#menu-table-body-row-template').html());
 	$tr.addClass('collapsed');
 	$tr.data('weeklyMenu', weeklyMenu);
-	var text = '<span class="expanded-state">' + COLLAPSED_ICON + '</span>' + weeklyMenu.name;
-	$tr.append($('<td>').html(text));
+	$tr.find('span.expanded-state').html(COLLAPSED_ICON);
+	$tr.find('span.weekly-menu-name').text(weeklyMenu.name);
 
-	$('#menu-table-body').append($tr);
-
-	// Placeholder row for data
-	$tr = $('<tr>').attr('id', 'weeklyMenu-data-' + weeklyMenu.key);
-	$tr.hide();
 	$('#menu-table-body').append($tr);
 }
 
@@ -278,6 +303,7 @@ function getRecipeTypeSortIndex(recipe) {
 	}
 	return index;
 }
+
 function mealitemComparator(liA, liB) {
 	var recipeA = $(liA).data('recipe');
 	var recipeB = $(liB).data('recipe');
@@ -297,23 +323,20 @@ function sortMealItems($ul) {
 	$li.sortElements(mealitemComparator);
 }
 
-function showWeeklyMenu(weeklyMenu) {
-	var $trPlaceholder = $('#weeklyMenu-data-' + weeklyMenu.key);
-	if ($trPlaceholder.find('td').size() == 0) {
-		var $tdPlaceholder = $('<td>');
-		var $table = $('<table>');
+function showWeeklyMenu($tr) {
+	var weeklyMenu = $tr.data('weeklyMenu');
+	if ($tr.find('div.daily-menu').size() == 0) {
+		var $td = $tr.find('td.weekly-menu-container');
 		var weekdays = findConstants('WEEKDAY');
 		for ( var i1 = 0; i1 < weekdays.length; i1++) {
 			var weeklyMenuDay = findWeeklyMenuDay(weeklyMenu, weekdays[i1].key);
-			var $tr = $('<tr>');
-			var $td = $('<td>');
-			$td.append($('#daily-menu-template').html());
-			$td.find('h2.day').text(weekdays[i1].value);
+			var $div = $('<div>').html($('#daily-menu-template').html());
+			$div.addClass('daily-menu');
+			$div.addClass(weekdays[i1].key);
 
-			$td.find('div.daily-menu').addClass(weekdays[i1].key);
-
-			var $ulLunch = $td.find('div.lunch ul.dish');
-			var $ulDinner = $td.find('div.dinner ul.dish');
+			$div.find('h2.day').text(weekdays[i1].value);
+			var $ulLunch = $div.find('div.lunch ul.dish');
+			var $ulDinner = $div.find('div.dinner ul.dish');
 			if (weeklyMenuDay === 'NOT_PRESENT' || !hasRecipeKeys(weeklyMenuDay.lunch)) {
 				addEmptyMenuItem($ulLunch);
 			} else {
@@ -338,28 +361,38 @@ function showWeeklyMenu(weeklyMenu) {
 				}
 				sortMealItems($ulDinner);
 			}
-			$tr.append($td);
-			$table.append($tr);
+			$td.append($div);
 		}
-		$tdPlaceholder.append($table);
-		$trPlaceholder.append($tdPlaceholder);
-		$trPlaceholder.find('li.mealitem').each(function() {
+		$tr.find('li.mealitem').each(function() {
 			makeMealItemDraggable($(this));
 		});
-		$trPlaceholder.find('ul.dish').droppable({
+		$tr.find('div.dish').droppable({
 			accept : "span.recipe-name",
 			tolerance : "pointer",
+			over : function(event, ui) {
+				$(this).css({
+					border : '1px dotted red'
+				});
+			},
+			out : function(event, ui) {
+				$(this).css({
+					border : 'none'
+				});
+			},
 			drop : function(event, ui) {
 				var recipe = ui.draggable.data('recipe');
-				var $ul = $(event.target);
+				var $ul = $(this).find('ul.dish');
 				$ul.find('li.empty').remove();
 				var $li = addMealItem($ul, recipe.key);
 				sortMealItems($ul);
 				makeMealItemDraggable($li);
+				$(this).css({
+					border : 'none'
+				});
 			}
 		});
 	}
-	$trPlaceholder.show();
+	$tr.find('div.daily-menu').show();
 }
 
 function findConstant(type, key) {
@@ -397,15 +430,15 @@ function findRecipe(key) {
 }
 
 function toggleWeeklyMenuExpandedState($tr) {
-	var weeklyMenu = $tr.data('weeklyMenu');
 	if ($tr.hasClass('collapsed')) {
 		$tr.find('.expanded-state').html(EXPANDED_ICON);
 		$tr.removeClass('collapsed');
 		$tr.addClass('expanded');
-		showWeeklyMenu(weeklyMenu);
+		showWeeklyMenu($tr);
 	} else {
 		$tr.find('.expanded-state').html(COLLAPSED_ICON);
 		$tr.addClass('collapsed');
 		$tr.removeClass('expanded');
+		$tr.find('div.daily-menu').hide();
 	}
 }

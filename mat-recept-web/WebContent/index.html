@@ -41,28 +41,31 @@
 							<th>Namn</th>
 						</tr>
 					</thead>
-					<tbody id="menu-table-body" />
+					<tbody id="menu-table-body">
+						<tr id="menu-table-body-row-template" style="display: none;">
+							<td class="weekly-menu-container"><span class="expanded-state">COLLAPSED_ICON</span><span
+								class="weekly-menu-name">WEEKLY_MENU_NAME</span></td>
+						</tr>
+					</tbody>
 				</table></td>
 		</tr>
 	</table>
 
-	<div id="trashcan-container" style="display: none; position: absolute; z-index: 50">
+	<div id="trashcan-container">
 		<img src="images/trashcan.jpg" />
 	</div>
 
 	<div id="daily-menu-template" style="display: none;">
-		<div class="daily-menu">
-			<h2 class="day"></h2>
-			<div class="lunch">
-				<h3>Lunch</h3>
-				<ul class="dish">
-				</ul>
-			</div>
-			<div class="dinner">
-				<h3>Middag</h3>
-				<ul class="dish">
-				</ul>
-			</div>
+		<h2 class="day"></h2>
+		<div class="lunch dish">
+			<h3>Lunch</h3>
+			<ul class="dish">
+			</ul>
+		</div>
+		<div class="dinner dish">
+			<h3>Middag</h3>
+			<ul class="dish">
+			</ul>
 		</div>
 	</div>
 </body>
