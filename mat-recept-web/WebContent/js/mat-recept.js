@@ -141,7 +141,6 @@ function loadMenues() {
 
 var EXPANDED_ICON = '&#9660;';
 var COLLAPSED_ICON = '&#9654;';
-var CURRENT_WEEK = '201305';
 var LI_EMPTY = '<Dra och släpp hit>';
 
 var allRecipes;
@@ -170,7 +169,8 @@ function handleMenuesXML(xml) {
 	for ( var i1 = 0; i1 < menues.weeklyMenu.length; i1++) {
 		createMenuRow(menues.weeklyMenu[i1]);
 	}
-	var $tr = $('#weeklyMenu-' + CURRENT_WEEK);
+	var currentWeek = getWeekNumber(new Date());
+	var $tr = $('#weeklyMenu-' + currentWeek.year + (currentWeek.week < 10 ? '0' : '') + currentWeek.week);
 	toggleWeeklyMenuExpandedState($tr);
 }
 
@@ -251,6 +251,41 @@ function makeMealItemDraggable($li) {
 
 }
 
+function mealitemComparator(a, b) {
+	function getSortIndex(recipe) {
+		var index;
+		switch (recipe.type) {
+		case 'FISH':
+			index = 0;
+			break;
+		case 'POULTRY':
+			index = 1;
+			break;
+		case 'VEGGIE':
+			index = 2;
+			break;
+		case 'MEAT':
+			index = 3;
+			break;
+		case 'SIDE_ORDER':
+			index = 4;
+			break;
+		default:
+			throw 'Unsupported recipe type ' + recipe.type;
+			break;
+		}
+		return index;
+	}
+	var recipeA = $(a).data('recipe');
+	var recipeB = $(b).data('recipe');
+	return getSortIndex(recipeA) < getSortIndex(recipeB) ? -1 : 1;
+}
+
+function sortMealItems($ul) {
+	var $li = $ul.children('li');
+	$li.sortElements(mealitemComparator);
+}
+
 function showWeeklyMenu(weeklyMenu) {
 	var $trPlaceholder = $('#weeklyMenu-data-' + weeklyMenu.key);
 	if ($trPlaceholder.find('td').size() == 0) {
@@ -278,6 +313,7 @@ function showWeeklyMenu(weeklyMenu) {
 						addMealItem($ulLunch, weeklyMenuDay.lunch.dish.recipeKey[i2]);
 					}
 				}
+				sortMealItems($ulLunch);
 			}
 			if (weeklyMenuDay === 'NOT_PRESENT' || !hasRecipeKeys(weeklyMenuDay.dinner)) {
 				addEmptyMenuItem($ulDinner);
@@ -289,6 +325,7 @@ function showWeeklyMenu(weeklyMenu) {
 						addMealItem($ulDinner, weeklyMenuDay.dinner.dish.recipeKey[i2]);
 					}
 				}
+				sortMealItems($ulDinner);
 			}
 			$tr.append($td);
 			$table.append($tr);
@@ -306,6 +343,7 @@ function showWeeklyMenu(weeklyMenu) {
 				var $ul = $(event.target);
 				$ul.find('li.empty').remove();
 				var $li = addMealItem($ul, recipe.key);
+				sortMealItems($ul);
 				makeMealItemDraggable($li);
 			}
 		});
