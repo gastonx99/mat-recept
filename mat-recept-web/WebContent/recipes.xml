@@ -115,7 +115,7 @@
 		<key>COLESLAW</key>
 		<name>Coleslaw</name>
 		<reference>Sida 89</reference>
-		<type>SIDE_ORDER</type>
+		<type>SIDE_ORDER_ROOT</type>
 		<ingredients>
 			<ingredient>
 				<name>Vitkål</name>
@@ -128,82 +128,82 @@
 		<key>UNGSROSTADE_ROTFRUKTER</key>
 		<name>Ungsrostade rotfrukter</name>
 		<reference>Sida 89</reference>
-		<type>SIDE_ORDER</type>
+		<type>SIDE_ORDER_ROOT</type>
 	</recipe>
 	<recipe>
 		<key>SPENATCREME</key>
 		<name>Spenatcrème med vitlök</name>
 		<reference>Sida 91</reference>
-		<type>SIDE_ORDER</type>
+		<type>SIDE_ORDER_ROOT</type>
 	</recipe>
 	<recipe>
 		<key>BLOMKALSMOS</key>
 		<name>Blomkålsmos</name>
 		<reference>Sida 19</reference>
-		<type>SIDE_ORDER</type>
+		<type>SIDE_ORDER_ROOT</type>
 	</recipe>
 	<recipe>
 		<key>BROCCOLI</key>
 		<name>Lättkokt broccoli</name>
 		<reference>Sida 19</reference>
-		<type>SIDE_ORDER</type>
+		<type>SIDE_ORDER_ROOT</type>
 	</recipe>
 	<recipe>
 		<key>ROD_PAPRIKA</key>
 		<name>Röd paprika</name>
 		<reference>Sida 19</reference>
-		<type>SIDE_ORDER</type>
+		<type>SIDE_ORDER_GREEN</type>
 	</recipe>
 	<recipe>
 		<key>KOKTA_RODBETOR</key>
 		<name>Kokta rödbetor</name>
 		<reference>Sida 23</reference>
-		<type>SIDE_ORDER</type>
+		<type>SIDE_ORDER_ROOT</type>
 	</recipe>
 	<recipe>
 		<key>GUACAMOLE</key>
 		<name>Guacamole</name>
 		<reference>Sida 33</reference>
-		<type>SIDE_ORDER</type>
+		<type>SIDE_ORDER_ROOT</type>
 	</recipe>
 	<recipe>
 		<key>RODBETSTSATSIKI</key>
 		<name>Rödbetstsatsiki</name>
 		<reference>Sida 43</reference>
-		<type>SIDE_ORDER</type>
+		<type>SIDE_ORDER_ROOT</type>
 	</recipe>
 	<recipe>
 		<key>TOMAT_RODLOK_ENKEL</key>
 		<name>Tomat och rödlöksringar</name>
 		<reference>Sida 43</reference>
-		<type>SIDE_ORDER</type>
+		<type>SIDE_ORDER_GREEN</type>
 	</recipe>
 	<recipe>
 		<key>TOMATSALLAD_RODLOK</key>
 		<name>Tomatsallad med rödlök</name>
 		<reference>Sida 71</reference>
-		<type>SIDE_ORDER</type>
+		<type>SIDE_ORDER_GREEN</type>
 	</recipe>
 	<recipe>
 		<key>TSATSIKI_GURKA</key>
 		<name>Tsatsiki med gurka</name>
 		<reference>Sida 71</reference>
-		<type>SIDE_ORDER</type>
+		<type>SIDE_ORDER_GREEN</type>
 	</recipe>
 	<recipe>
 		<key>GRONSAKSMOS</key>
 		<name>Grönsaksmos</name>
 		<reference>Sida 84</reference>
-		<type>SIDE_ORDER</type>
+		<type>SIDE_ORDER_ROOT</type>
 	</recipe>
 	<recipe>
 		<key>ROTMOS_VARIERAD</key>
 		<name>Rotmos varierad</name>
-		<type>SIDE_ORDER</type>
+		<type>SIDE_ORDER_ROOT</type>
 	</recipe>
 	<recipe>
 		<key>GRONSALLAD</key>
 		<name>Grönsallad</name>
-		<type>SIDE_ORDER</type>
+		<type>SIDE_ORDER_GREEN</type>
 	</recipe>
 </recipes>

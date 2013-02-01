@@ -15,24 +15,28 @@ table th {
 	text-align: left;
 }
 
-tr.recipe-type-MEAT td {
+span.recipe-type-MEAT {
 	color: red;
 }
 
-tr.recipe-type-VEGGIE td {
-	color: green;
+span.recipe-type-VEGGIE {
+	color: darkolivegreen;
 }
 
-tr.recipe-type-FISH td {
+span.recipe-type-FISH {
 	color: blue;
 }
 
-tr.recipe-type-POULTRY td {
+span.recipe-type-POULTRY {
 	color: orange;
 }
 
-tr.recipe-type-SIDE_ORDER td {
-	color: purple;
+span.recipe-type-SIDE_ORDER_ROOT {
+	color: green;
+}
+
+span.recipe-type-SIDE_ORDER_GREEN {
+	color: springgreen;
 }
 
 span.expanded-state {

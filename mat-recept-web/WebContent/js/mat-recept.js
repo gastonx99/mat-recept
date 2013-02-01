@@ -157,6 +157,7 @@ function handleRecipesXML(xml) {
 		var recipe = recipes.recipe[i1];
 		createRecipeRow(recipe);
 	}
+	$('#recipe-table-body tr').not('#recipe-table-body-row-template').sortElements(recipeComparator);
 	allRecipes = recipes.recipe;
 	$('.recipe-name').draggable({
 		helper : "clone"
@@ -175,13 +176,10 @@ function handleMenuesXML(xml) {
 }
 
 function createRecipeRow(recipe) {
-	var $tr = $('<tr>').addClass('recipe-type-' + recipe.type).addClass('collapsed');
-	var $icon = $('<span>').addClass('expanded-state').html(COLLAPSED_ICON);
-	var $recipe = $('<span>').addClass('recipe-name').text(recipe.name).data('recipe', recipe);
-	var $td = $('<td>');
-	$td.append($icon).append($recipe);
-	$tr.append($td);
-
+	var $tr = $('<tr>').addClass('collapsed');
+	$tr.append($('#recipe-table-body-row-template').html());
+	$tr.find('.expanded-state').html(COLLAPSED_ICON);
+	$tr.find('.recipe-name').addClass('recipe-type-' + recipe.type).text(recipe.name).data('recipe', recipe);
 	$('#recipe-table-body').append($tr);
 }
 
@@ -220,7 +218,9 @@ function hasRecipeKeys(meal) {
 
 function addMealItem($ul, recipeKey) {
 	var recipe = findRecipe(recipeKey);
-	var $li = $('<li>').addClass('mealitem').text(recipe.name).data('recipe', recipe);
+	var $li = $('<li>').addClass('mealitem').data('recipe', recipe);
+	var $span = $('<span>').addClass('recipe-type-' + recipe.type).text(recipe.name);
+	$li.append($span);
 	$ul.append($li);
 	return $li;
 }
@@ -251,34 +251,45 @@ function makeMealItemDraggable($li) {
 
 }
 
-function mealitemComparator(a, b) {
-	function getSortIndex(recipe) {
-		var index;
-		switch (recipe.type) {
-		case 'FISH':
-			index = 0;
-			break;
-		case 'POULTRY':
-			index = 1;
-			break;
-		case 'VEGGIE':
-			index = 2;
-			break;
-		case 'MEAT':
-			index = 3;
-			break;
-		case 'SIDE_ORDER':
-			index = 4;
-			break;
-		default:
-			throw 'Unsupported recipe type ' + recipe.type;
-			break;
-		}
-		return index;
+function getRecipeTypeSortIndex(recipe) {
+	var index;
+	switch (recipe.type) {
+	case 'FISH':
+		index = 0;
+		break;
+	case 'POULTRY':
+		index = 1;
+		break;
+	case 'VEGGIE':
+		index = 2;
+		break;
+	case 'MEAT':
+		index = 3;
+		break;
+	case 'SIDE_ORDER_ROOT':
+		index = 4;
+		break;
+	case 'SIDE_ORDER_GREEN':
+		index = 5;
+		break;
+	default:
+		throw 'Unsupported recipe type ' + recipe.type;
+		break;
 	}
-	var recipeA = $(a).data('recipe');
-	var recipeB = $(b).data('recipe');
-	return getSortIndex(recipeA) < getSortIndex(recipeB) ? -1 : 1;
+	return index;
+}
+function mealitemComparator(liA, liB) {
+	var recipeA = $(liA).data('recipe');
+	var recipeB = $(liB).data('recipe');
+	return getRecipeTypeSortIndex(recipeA) < getRecipeTypeSortIndex(recipeB) ? -1 : 1;
+}
+
+function recipeComparator(trA, trB) {
+	var $trA = $(trA);
+	var $spanA = $trA.find('.recipe-name');
+	var recipeA = $spanA.data('recipe');
+	var recipeB = $(trB).find('.recipe-name').data('recipe');
+	return getRecipeTypeSortIndex(recipeA) < getRecipeTypeSortIndex(recipeB) ? -1 : 1;
 }
 
 function sortMealItems($ul) {
