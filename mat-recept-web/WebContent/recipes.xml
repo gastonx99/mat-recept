@@ -269,4 +269,35 @@
 		<name>Blomkål, purjolök och rotselleri</name>
 		<type>SIDE_ORDER_ROOT</type>
 	</recipe>
+	<recipe>
+		<key>PIZZASALLAD</key>
+		<name>Pizzasallad</name>
+		<type>SIDE_ORDER_ROOT</type>
+		<ingredients>
+			<ingredient>
+				<name>Vitkål</name>
+				<amount>500</amount>
+				<unit>GRAM</unit>
+			</ingredient>
+			<ingredient>
+				<name>Olivolja</name>
+				<amount>2</amount>
+				<unit>TSP</unit>
+			</ingredient>
+			<ingredient>
+				<name>Vitvinsvinäger</name>
+				<amount>1.5</amount>
+				<unit>PCS</unit>
+			</ingredient>
+		</ingredients>
+		<preparation>
+			<time>20</time>
+			<step>Strimla vitkålen</step>
+			<step>Salta</step>
+			<step>Knåda eller stöt (som i en mortel)</step>
+			<step>Häll över olja, vinäger och peppar</step>
+			<step>Rör om</step>
+			<step>Låt stå i kylskåp, minst 2 timmar, helst halvt eller helt dygn</step>
+		</preparation>
+	</recipe>
 </recipes>
