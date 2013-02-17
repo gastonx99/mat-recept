@@ -297,6 +297,9 @@ function getRecipeTypeSortIndex(recipe) {
 	case 'SIDE_ORDER_GREEN':
 		index = 5;
 		break;
+	case 'ITRIM_LCD':
+		index = 6;
+		break;
 	default:
 		throw 'Unsupported recipe type ' + recipe.type;
 		break;

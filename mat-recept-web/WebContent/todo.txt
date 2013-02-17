@@ -1,0 +1,20 @@
+
+
+TODO
+----
+Cursor: pointer över meal item
+Indikator på sparad/ej sparad
+ctrl+s för att spara
+Inloggning + utloggning
+Skapa dummy meny för nya användare
+Dra o släpp meal items för att kopiera
+Indikator om receptnyckel inte finns
+Recept, andrahandssortering på namn
+Låt recept scrolla med på sidan
+Indikator på att måltid är "klar"
+weekly_menues istället för menues (nyckel username, week key)
+Snabblänk till veckans meny (för inlänkning från bloggen)
+Indikatorer (COOKED, FRIDGE, FREEZER)
+Recept beskrivning
+Recept innehållslista
+Recept steg-för-steg

@@ -18,6 +18,11 @@
 		</preparation>
 	</recipe>
 	<recipe>
+		<key>ITRIM_LCD_CHOCOLATE</key>
+		<name>Itrim LCD Choklad</name>
+		<type>ITRIM_LCD</type>
+	</recipe>
+	<recipe>
 		<key>FISK_GRYTA_SAFFRAN_RAKOR</key>
 		<name>Lyxig fiskgryta med saffran och räkor</name>
 		<reference>Sida 17</reference>
@@ -29,8 +34,8 @@
 		<type>FISH</type>
 	</recipe>
 	<recipe>
-		<key>LAXFILE_VITLOK</key>
-		<name>Laxfile med vitlök</name>
+		<key>LAXFILE_ENKEL</key>
+		<name>Laxfile</name>
 		<type>FISH</type>
 	</recipe>
 	<recipe>
@@ -44,6 +49,65 @@
 		<name>Lax på spenatbädd</name>
 		<reference>Sida 23</reference>
 		<type>FISH</type>
+		<ingredients>
+			<ingredient>
+				<name>Rökt lax</name>
+				<amount>200</amount>
+				<unit>GRAM</unit>
+			</ingredient>
+			<ingredient>
+				<name>Zucchini</name>
+				<amount>2</amount>
+				<unit>PCS</unit>
+			</ingredient>
+			<ingredient>
+				<name>Gul lök</name>
+				<amount>1</amount>
+				<unit>PCS</unit>
+			</ingredient>
+			<ingredient>
+				<name>Olivolja</name>
+				<amount>1</amount>
+				<unit>TSP</unit>
+			</ingredient>
+			<ingredient>
+				<name>Citron</name>
+				<amount>1</amount>
+				<unit>PCS</unit>
+			</ingredient>
+			<ingredient>
+				<name>Lätt creme fraiche</name>
+				<amount>1</amount>
+				<unit>DL</unit>
+			</ingredient>
+			<ingredient>
+				<name>Sockerärtor</name>
+				<amount>100</amount>
+				<unit>GRAM</unit>
+			</ingredient>
+			<ingredient>
+				<name>Svartpeppar</name>
+			</ingredient>
+			<ingredient>
+				<name>Dill till dekor</name>
+			</ingredient>
+		</ingredients>
+		<preparation>
+			<time>20</time>
+			<step>Börja koka upp lättsaltat vatten för zucchinin</step>
+			<step>Gör långa strimlor av zucchinin med potatisskalare, hoppa över kärnhuset i mitten</step>
+			<step>Strimla laxen</step>
+			<step>Skala och finhacka löken</step>
+			<step>Hetta upp olivolja och mjukstek löken utan att den tar färg</step>
+			<step>Tillsätt laxen och låt den steka med i en halv minut</step>
+			<step>Pressa över citron</step>
+			<step>Peppra rejält</step>
+			<step>Blanda i creme fraiche och sockerärtor</step>
+			<step>Låt puttra i någon minut</step>
+			<step>Häll såsen över zucchinin</step>
+			<step>Lägg zucchinistrimlorna i en sil och sänk ned dem 10-15 sekunder i kokande lättsaltat vatten och sedan låta dem rinna av</step>
+			<step>Dekorera med dillvippor och servera genast</step>
+		</preparation>
 	</recipe>
 	<recipe>
 		<key>TONFISK_SAS_PEPPRIG</key>
@@ -167,12 +231,6 @@
 		<type>SIDE_ORDER_ROOT</type>
 	</recipe>
 	<recipe>
-		<key>RODBETSTSATSIKI</key>
-		<name>Rödbetstsatsiki</name>
-		<reference>Sida 43</reference>
-		<type>SIDE_ORDER_ROOT</type>
-	</recipe>
-	<recipe>
 		<key>TOMAT_RODLOK_ENKEL</key>
 		<name>Tomat och rödlöksringar</name>
 		<reference>Sida 43</reference>
@@ -205,5 +263,10 @@
 		<key>GRONSALLAD</key>
 		<name>Grönsallad</name>
 		<type>SIDE_ORDER_GREEN</type>
+	</recipe>
+	<recipe>
+		<key>BROCCOLI_PURJOLOK</key>
+		<name>Blomkål, purjolök och rotselleri</name>
+		<type>SIDE_ORDER_ROOT</type>
 	</recipe>
 </recipes>
