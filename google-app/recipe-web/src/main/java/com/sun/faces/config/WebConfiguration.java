@@ -1,7 +1,7 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright (c) 1997-2010 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997-2012 Oracle and/or its affiliates. All rights reserved.
  *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
@@ -356,13 +356,10 @@ public class WebConfiguration {
         value = value.trim();
         String oldVal = contextParameters.put(param, value);
         cachedListParams.remove(param);
-        if (oldVal != null) {
-            if (LOGGER.isLoggable(Level.FINE) && !(oldVal.equals(value))) {
-                LOGGER.log(Level.FINE, "Overriding init parameter {0}.  Changing from {1} to {2}.", new Object[] {
-                        param.getQualifiedName(), oldVal, value });
-            }
+        if (oldVal != null && LOGGER.isLoggable(Level.FINE) && !(oldVal.equals(value))) {
+            LOGGER.log(Level.FINE, "Overriding init parameter {0}.  Changing from {1} to {2}.",
+                    new Object[] { param.getQualifiedName(), oldVal, value });
         }
-
     }
 
     public void doPostBringupActions() {
@@ -817,6 +814,8 @@ public class WebConfiguration {
         VerifyFacesConfigObjects("com.sun.faces.verifyObjects", false),
         ForceLoadFacesConfigFiles("com.sun.faces.forceLoadConfiguration", false),
         DisableArtifactVersioning("com.sun.faces.disableVersionTracking", false, true, null),
+        DisableClientStateEncryption("com.sun.faces.disableClientStateEncryption", false),
+        EnableClientStateDebugging("com.sun.faces.enableClientStateDebugging", false),
         EnableHtmlTagLibraryValidator("com.sun.faces.enableHtmlTagLibValidator", false),
         EnableCoreTagLibraryValidator("com.sun.faces.enableCoreTagLibValidator", false),
         PreferXHTMLContentType("com.sun.faces.preferXHTML", false),
@@ -825,7 +824,7 @@ public class WebConfiguration {
         CompressViewStateDeprecated("com.sun.faces.COMPRESS_STATE", true, true, CompressViewState),
         CompressJavaScript("com.sun.faces.compressJavaScript", true),
         ExternalizeJavaScriptDeprecated("com.sun.faces.externalizeJavaScript", true, true, null),
-        SendPoweredByHeader("com.sun.faces.sendPoweredByHeader", true),
+        SendPoweredByHeader("com.sun.faces.sendPoweredByHeader", false),
         EnableJSStyleHiding("com.sun.faces.enableJSStyleHiding", false),
         EnableScriptInAttributeValue("com.sun.faces.enableScriptsInAttributeValues", true),
         WriteStateAtFormEnd("com.sun.faces.writeStateAtFormEnd", true),
@@ -928,12 +927,12 @@ public class WebConfiguration {
     /**
      * <p>
      * An <code>enum</code> of all environment entries (specified in the
-     * web.xml) recognized by the implemenetation.
+     * web.xml) recognized by the implementation.
      * </p>
      */
     public enum WebEnvironmentEntry {
 
-        ClientStateSavingPassword("ClientStateSavingPassword"), ProjectStage(
+        ClientStateSavingPassword("com.sun.faces.ClientStateSavingPassword"), ProjectStage(
                 javax.faces.application.ProjectStage.PROJECT_STAGE_JNDI_NAME);
 
         private static final String JNDI_PREFIX = "java:comp/env/";
