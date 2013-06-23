@@ -18,8 +18,6 @@
 	</context-param>
 	<!-- Disable use of threading for single-threaded environments such as the Google AppEngine. -->
 	<context-param>
-		<param-name>com.sun.faces.enableThreading</param-name>
-		<param-value>false</param-value>
 		<description>
          When enabled, the runtime initialization and default ResourceHandler 
          implementation will use threads to perform their functions. Set this 
@@ -29,6 +27,8 @@
          Note that when this option is disabled, the ResourceHandler will not 
          pick up new versions of resources when ProjectStage is development.
       </description>
+		<param-name>com.sun.faces.enableThreading</param-name>
+		<param-value>false</param-value>
 	</context-param>
 	<!-- ***** Specify JBoss Expression Language Over Default -->
 	<context-param>
@@ -57,10 +57,10 @@
 	</welcome-file-list>
 
 	<filter>
-		<display-name>AppEngine Bug 8145 Work Around</display-name>
 		<description>
-      Suppresses the If Modified Since header until GAE bug 8145 is fixed.
-      </description>
+	      Suppresses the If Modified Since header until GAE bug 8145 is fixed.
+		</description>
+		<display-name>AppEngine Bug 8145 Work Around</display-name>
 		<filter-name>GAEBug8145WorkAround</filter-name>
 		<filter-class>com.wildstartech.gae.HttpIfModifiedSinceFix</filter-class>
 	</filter>

@@ -8,24 +8,22 @@
 	<title>Recipes</title>
 </h:head>
 <h:body id="body">
-	<f:view contentType="text/html">
-		<h:form>
-			<p:dataTable id="dataTable" var="recipe" value="#{recipesView.items}">
-				<f:facet name="header">Recipes</f:facet>
-				<p:column sortBy="#{recipe.type}" headerText="Type">
-					<h:outputText value="#{recipe.type}" />
-				</p:column>
-				<p:column sortBy="#{recipe.id}" headerText="Id">
-					<h:outputText value="#{recipe.id}" />
-				</p:column>
-				<p:column sortBy="#{recipe.name}" headerText="Name">
-					<h:outputText value="#{recipe.name}" />
-				</p:column>
-			</p:dataTable>
-			<f:metadata>
-				<f:event type="preRenderView" listener="#{recipesController.load}" />
-			</f:metadata>
-		</h:form>
-	</f:view>
+	<h:form>
+		<p:commandButton value="Hejsan" />
+	</h:form>
+	<h:form>
+		<p:dataTable id="dataTable" var="recipe" value="#{recipesView.items}">
+			<f:facet name="header">Recipes</f:facet>
+			<p:column sortBy="#{recipe.type}" headerText="Type">
+				<h:outputText value="#{recipe.type}" />
+			</p:column>
+			<p:column sortBy="#{recipe.id}" headerText="Id">
+				<h:outputText value="#{recipe.id}" />
+			</p:column>
+			<p:column sortBy="#{recipe.name}" headerText="Name">
+				<h:outputText value="#{recipe.name}" />
+			</p:column>
+		</p:dataTable>
+	</h:form>
 </h:body>
 </html>
