@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.model.SelectItem;
 
 @ManagedBean
 public class RecipesView implements Serializable {
@@ -19,12 +20,13 @@ public class RecipesView implements Serializable {
 
     private List<RecipeItem> items;
 
+    private List<SelectItem> typeOptions;
+
     public RecipesView() {
         logger.info("Instantiating");
     }
 
     public List<RecipeItem> getItems() {
-        logger.info("getItems");
         if (items == null) {
             items = recipesModel.getItems();
         }
@@ -33,6 +35,13 @@ public class RecipesView implements Serializable {
 
     public void setRecipesModel(RecipesModel recipesModel) {
         this.recipesModel = recipesModel;
+    }
+
+    public List<SelectItem> getTypeOptions() {
+        if (typeOptions == null) {
+            typeOptions = recipesModel.getTypeOptions();
+        }
+        return typeOptions;
     }
 
 }

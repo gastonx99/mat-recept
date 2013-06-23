@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.model.SelectItem;
 
 import se.dandel.recipe.Recipe;
 import se.dandel.recipe.RecipeId;
@@ -22,13 +23,21 @@ public class RecipesModel implements Serializable {
 
     private List<RecipeItem> items;
 
+    private List<SelectItem> typeOptions;
+
     @PostConstruct
     public void init() {
-        System.out.println("qwerqwer");
+        logger.info("Initializing model");
         items = new ArrayList<>();
         items.add(createItem(RecipeType.MEAT, "BIFF_STROGANOFF", "Biff Stroganoff"));
         items.add(createItem(RecipeType.ITRIM_LCD, "ITRIM_LCD_CHOCOLATE", "Itrim LCD Choklad"));
         items.add(createItem(RecipeType.FISH, "FISK_GRYTA_SAFFRAN_RAKOR", "Lyxig fiskgryta med saffran och räkor"));
+
+        typeOptions = new ArrayList<>();
+        typeOptions.add(new SelectItem("", "Alla"));
+        for (RecipeType type : RecipeType.values()) {
+            typeOptions.add(new SelectItem(type.name()));
+        }
     }
 
     private RecipeItem createItem(RecipeType type, String id, String name) {
@@ -42,8 +51,11 @@ public class RecipesModel implements Serializable {
     }
 
     public List<RecipeItem> getItems() {
-        logger.info("getItems");
         return items;
+    }
+
+    public List<SelectItem> getTypeOptions() {
+        return typeOptions;
     }
 
 }

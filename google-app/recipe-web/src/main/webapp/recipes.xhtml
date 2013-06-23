@@ -9,11 +9,22 @@
 </h:head>
 <h:body id="body">
 	<h:form>
-		<p:commandButton value="Hejsan" />
-	</h:form>
-	<h:form>
-		<p:dataTable id="dataTable" var="recipe" value="#{recipesView.items}">
-			<f:facet name="header">Recipes</f:facet>
+		<p:fieldset legend="Sök/Filter" toggleable="true">
+			<h:panelGrid columns="4" cellpadding="10">
+				<h:outputText value="Typ" />
+				<p:selectOneMenu value="#{recipesForm.selectedType}">
+					<p:ajax update="dataTable" listener="#{recipesController.typeChange}" />
+					<f:selectItems value="#{recipesView.typeOptions}" />
+				</p:selectOneMenu>
+				<h:outputText value="Sök alla fält:" />
+				<p:inputText id="globalFilter" onkeyup="recipesTable.filter()" style="width:150px" />
+			</h:panelGrid>
+		</p:fieldset>
+
+		<p:dataTable id="dataTable" var="recipe" value="#{recipesView.items}" widgetVar="recipesTable"
+			emptyMessage="Inga recept kunde hittas för valda kriterier">
+			<f:facet name="header">Recept</f:facet>
+
 			<p:column sortBy="#{recipe.type}" headerText="Type">
 				<h:outputText value="#{recipe.type}" />
 			</p:column>
@@ -25,5 +36,6 @@
 			</p:column>
 		</p:dataTable>
 	</h:form>
+	<p:messages globalOnly="true" autoUpdate="true" />
 </h:body>
 </html>
