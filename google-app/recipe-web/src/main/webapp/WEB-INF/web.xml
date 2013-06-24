@@ -30,6 +30,11 @@
 		<param-name>com.sun.faces.enableThreading</param-name>
 		<param-value>false</param-value>
 	</context-param>
+	<!-- Tailor made injection with Guice -->
+	<context-param>
+		<param-name>com.sun.faces.injectionProvider</param-name>
+		<param-value>se.dandel.recipe.infra.RecipeWebContainerInjectionProvider</param-value>
+	</context-param>
 	<!-- ***** Specify JBoss Expression Language Over Default -->
 	<context-param>
 		<param-name>com.sun.faces.expressionFactory</param-name>

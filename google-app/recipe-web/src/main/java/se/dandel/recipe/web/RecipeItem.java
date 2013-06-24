@@ -10,6 +10,10 @@ public class RecipeItem implements Serializable {
 
     private Recipe recipe;
 
+    public RecipeItem(Recipe recipe) {
+        this.recipe = recipe;
+    }
+
     public Object getId() {
         return recipe.getId().getId();
     }
@@ -20,10 +24,6 @@ public class RecipeItem implements Serializable {
 
     public String getType() {
         return recipe.getType().name();
-    }
-
-    public void setRecipe(Recipe recipe) {
-        this.recipe = recipe;
     }
 
 }
