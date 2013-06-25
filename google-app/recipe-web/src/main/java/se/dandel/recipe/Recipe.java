@@ -6,16 +6,16 @@ public class Recipe implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private RecipeId id;
+    private final RecipeId id;
     private String name;
-    private RecipeType type;
+    private String type;
+
+    public Recipe(String id) {
+        this.id = new RecipeId(id);
+    }
 
     public RecipeId getId() {
         return id;
-    }
-
-    public void setId(RecipeId id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -26,11 +26,11 @@ public class Recipe implements Serializable {
         this.name = name;
     }
 
-    public RecipeType getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(RecipeType type) {
+    public void setType(String type) {
         this.type = type;
     }
 

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:recipe="http://xml.recipe.dandel.se/recipes" targetNamespace="http://xml.recipe.dandel.se/recipes" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified">
+
+	<xs:element name="recipes">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="recipe" type="recipe:recipeType" minOccurs="0" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="ingredientType">
+		<xs:sequence>
+			<xs:element name="name" type="xs:string" />
+			<xs:element name="amount" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="unit" type="xs:string" minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ingredientsType">
+		<xs:sequence>
+			<xs:element name="ingredient" type="recipe:ingredientType" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="recipeType">
+		<xs:sequence>
+			<xs:element name="key" type="xs:string" />
+			<xs:element name="name" type="xs:string" />
+			<xs:element name="type" type="xs:string" />
+			<xs:element name="reference" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="ingredients" type="recipe:ingredientsType" minOccurs="0" maxOccurs="1" />
+			<xs:element name="preparation" type="recipe:preparationType" minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="preparationType">
+		<xs:sequence>
+			<xs:element name="time" type="xs:positiveInteger" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Time in minutes to prepare the recipe</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="steps" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="step" type="xs:string" minOccurs="0" maxOccurs="unbounded" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

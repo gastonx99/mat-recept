@@ -23,7 +23,7 @@ public class RecipeItem implements Serializable {
     }
 
     public String getType() {
-        return recipe.getType().name();
+        return recipe.getType();
     }
 
 }

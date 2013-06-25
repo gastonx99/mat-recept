@@ -527,6 +527,7 @@ public class WebConfiguration {
      * @param servletContext
      *            the ServletContext of interest
      */
+    @SuppressWarnings("rawtypes")
     private void initSetList(ServletContext servletContext) {
 
         for (Enumeration e = servletContext.getInitParameterNames(); e.hasMoreElements();) {

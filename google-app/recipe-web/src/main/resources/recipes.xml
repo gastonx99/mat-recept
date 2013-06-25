@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<recipe:recipes xmlns:recipe="http://xml.recipe.dandel.se/recipes" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<recipe:recipe>
+		<recipe:key>BIFF_STROGANOFF</recipe:key>
+		<recipe:name>Biff Stroganoff</recipe:name>
+		<recipe:type>MEAT</recipe:type>
+		<recipe:reference>Sida 79</recipe:reference>
+		<recipe:ingredients>
+			<recipe:ingredient>
+				<recipe:name>Lövbiff</recipe:name>
+				<recipe:amount>250</recipe:amount>
+				<recipe:unit>GRAM</recipe:unit>
+			</recipe:ingredient>
+		</recipe:ingredients>
+		<recipe:preparation>
+			<recipe:time>30</recipe:time>
+			<recipe:steps>
+				<recipe:step>Strimla biffen</recipe:step>
+			</recipe:steps>
+		</recipe:preparation>
+	</recipe:recipe>
+	<recipe:recipe>
+		<recipe:key>ITRIM_LCD_CHOCOLATE</recipe:key>
+		<recipe:name>Itrim LCD Choklad</recipe:name>
+		<recipe:type>ITRIM_LCD</recipe:type>
+	</recipe:recipe>
+	<recipe:recipe>
+		<recipe:key>FISK_GRYTA_SAFFRAN_RAKOR</recipe:key>
+		<recipe:name>Lyxig fiskgryta med saffran och räkor</recipe:name>
+		<recipe:type>FISH</recipe:type>
+		<recipe:reference>Sida 17</recipe:reference>
+	</recipe:recipe>
+	<recipe:recipe>
+		<recipe:key>ROKT_LAX_ZUCCHINIPASTA</recipe:key>
+		<recipe:name>Rökt lax med zucchinipasta</recipe:name>
+		<recipe:type>FISH</recipe:type>
+	</recipe:recipe>
+	<recipe:recipe>
+		<recipe:key>LAXFILE_ENKEL</recipe:key>
+		<recipe:name>Laxfile</recipe:name>
+		<recipe:type>FISH</recipe:type>
+	</recipe:recipe>
+	<recipe:recipe>
+		<recipe:key>FISK_PEPPARROT</recipe:key>
+		<recipe:name>Fisk med pepparrot</recipe:name>
+		<recipe:type>FISH</recipe:type>
+		<recipe:reference>Sida 19</recipe:reference>
+	</recipe:recipe>
+	<recipe:recipe>
+		<recipe:key>LAX_SPENATBADD</recipe:key>
+		<recipe:name>Lax på spenatbädd</recipe:name>
+		<recipe:type>FISH</recipe:type>
+		<recipe:reference>Sida 23</recipe:reference>
+		<recipe:ingredients>
+			<recipe:ingredient>
+				<recipe:name>Rökt lax</recipe:name>
+				<recipe:amount>200</recipe:amount>
+				<recipe:unit>GRAM</recipe:unit>
+			</recipe:ingredient>
+			<recipe:ingredient>
+				<recipe:name>Zucchini</recipe:name>
+				<recipe:amount>2</recipe:amount>
+				<recipe:unit>PCS</recipe:unit>
+			</recipe:ingredient>
+			<recipe:ingredient>
+				<recipe:name>Gul lök</recipe:name>
+				<recipe:amount>1</recipe:amount>
+				<recipe:unit>PCS</recipe:unit>
+			</recipe:ingredient>
+			<recipe:ingredient>
+				<recipe:name>Olivolja</recipe:name>
+				<recipe:amount>1</recipe:amount>
+				<recipe:unit>TSP</recipe:unit>
+			</recipe:ingredient>
+			<recipe:ingredient>
+				<recipe:name>Citron</recipe:name>
+				<recipe:amount>1</recipe:amount>
+				<recipe:unit>PCS</recipe:unit>
+			</recipe:ingredient>
+			<recipe:ingredient>
+				<recipe:name>Lätt creme fraiche</recipe:name>
+				<recipe:amount>1</recipe:amount>
+				<recipe:unit>DL</recipe:unit>
+			</recipe:ingredient>
+			<recipe:ingredient>
+				<recipe:name>Sockerärtor</recipe:name>
+				<recipe:amount>100</recipe:amount>
+				<recipe:unit>GRAM</recipe:unit>
+			</recipe:ingredient>
+			<recipe:ingredient>
+				<recipe:name>Svartpeppar</recipe:name>
+			</recipe:ingredient>
+			<recipe:ingredient>
+				<recipe:name>Dill till dekor</recipe:name>
+			</recipe:ingredient>
+		</recipe:ingredients>
+		<recipe:preparation>
+			<recipe:time>20</recipe:time>
+			<recipe:steps>
+				<recipe:step>Börja koka upp lättsaltat vatten för zucchinin</recipe:step>
+				<recipe:step>Gör långa strimlor av zucchinin med potatisskalare, hoppa över kärnhuset i mitten</recipe:step>
+				<recipe:step>Strimla laxen</recipe:step>
+				<recipe:step>Skala och finhacka löken</recipe:step>
+				<recipe:step>Hetta upp olivolja och mjukstek löken utan att den tar färg</recipe:step>
+				<recipe:step>Tillsätt laxen och låt den steka med i en halv minut</recipe:step>
+				<recipe:step>Pressa över citron</recipe:step>
+				<recipe:step>Peppra rejält</recipe:step>
+				<recipe:step>Blanda i creme fraiche och sockerärtor</recipe:step>
+				<recipe:step>Låt puttra i någon minut</recipe:step>
+				<recipe:step>Häll såsen över zucchinin</recipe:step>
+				<recipe:step>Lägg zucchinistrimlorna i en sil och sänk ned dem 10-15 sekunder i kokande lättsaltat vatten och sedan
+					låta dem
+					rinna av
+				</recipe:step>
+				<recipe:step>Dekorera med dillvippor och servera genast</recipe:step>
+			</recipe:steps>
+		</recipe:preparation>
+	</recipe:recipe>
+	<recipe:recipe>
+		<recipe:key>TONFISK_SAS_PEPPRIG</recipe:key>
+		<recipe:name>Pepprig tonfisksås</recipe:name>
+		<recipe:type>FISH</recipe:type>
+		<recipe:reference>Sida 30</recipe:reference>
+	</recipe:recipe>
+	<recipe:recipe>
+		<recipe:key>FISKBURGARE</recipe:key>
+		<recipe:name>Saftig fiskburgare</recipe:name>
+		<recipe:type>FISH</recipe:type>
+		<recipe:reference>Sida 33</recipe:reference>
+	</recipe:recipe>
+	<recipe:recipe>
+		<recipe:key>KYCKLINGBURGARE</recipe:key>
+		<recipe:name>Kycklingburgare</recipe:name>
+		<recipe:type>POULTRY</recipe:type>
+		<recipe:reference>Sida 43</recipe:reference>
+	</recipe:recipe>
+	<recipe:recipe>
+		<recipe:key>BOLOGNESE_VEG</recipe:key>
+		<recipe:name>Vegetarisk bolognese</recipe:name>
+		<recipe:type>VEGGIE</recipe:type>
+		<recipe:reference>Sida 53</recipe:reference>
+	</recipe:recipe>
+	<recipe:recipe>
+		<recipe:key>BOLOGNESE_MEAT</recipe:key>
+		<recipe:name>Köttfärsbolognese</recipe:name>
+		<recipe:type>MEAT</recipe:type>
+		<recipe:reference>Sida 53</recipe:reference>
+	</recipe:recipe>
+	<recipe:recipe>
+		<recipe:key>KIKARTSBIFFAR_ZUCCHINI</recipe:key>
+		<recipe:name>Kikärtsbiffar med zucchini</recipe:name>
+		<recipe:type>VEGGIE</recipe:type>
+		<recipe:reference>Sida 61</recipe:reference>
+	</recipe:recipe>
+	<recipe:recipe>
+		<recipe:key>LINSSOPPA_MOROT</recipe:key>
+		<recipe:name>Linssoppa med morot</recipe:name>
+		<recipe:type>VEGGIE</recipe:type>
+		<recipe:reference>Sida 63</recipe:reference>
+	</recipe:recipe>
+	<recipe:recipe>
+		<recipe:key>LAMMFARSKEBAB</recipe:key>
+		<recipe:name>Lammfärskebab med mynta och kanel</recipe:name>
+		<recipe:type>MEAT</recipe:type>
+		<recipe:reference>Sida 71</recipe:reference>
+	</recipe:recipe>
+	<recipe:recipe>
+		<recipe:key>FLASKFILE_CURRY</recipe:key>
+		<recipe:name>Grillad fläskfilé med mild currysås</recipe:name>
+		<recipe:type>MEAT</recipe:type>
+		<recipe:reference>Sida 75</recipe:reference>
+	</recipe:recipe>
+	<recipe:recipe>
+		<recipe:key>VARDAGSBIFFAR</recipe:key>
+		<recipe:name>Vardagsbiffar</recipe:name>
+		<recipe:type>MEAT</recipe:type>
+		<recipe:reference>Sida 84</recipe:reference>
+	</recipe:recipe>
+	<recipe:recipe>
+		<recipe:key>TERIYAKILAX</recipe:key>
+		<recipe:name>Teriyakilax</recipe:name>
+		<recipe:type>FISH</recipe:type>
+		<recipe:reference>Sida 23</recipe:reference>
+	</recipe:recipe>
+	<recipe:recipe>
+		<recipe:key>COLESLAW</recipe:key>
+		<recipe:name>Coleslaw</recipe:name>
+		<recipe:type>SIDE_ORDER_ROOT</recipe:type>
+		<recipe:reference>Sida 89</recipe:reference>
+		<recipe:ingredients>
+			<recipe:ingredient>
+				<recipe:name>Vitkål</recipe:name>
+				<recipe:amount>1</recipe:amount>
+				<recipe:unit>CLOVE</recipe:unit>
+			</recipe:ingredient>
+		</recipe:ingredients>
+	</recipe:recipe>
+	<recipe:recipe>
+		<recipe:key>UNGSROSTADE_ROTFRUKTER</recipe:key>
+		<recipe:name>Ungsrostade rotfrukter</recipe:name>
+		<recipe:type>SIDE_ORDER_ROOT</recipe:type>
+		<recipe:reference>Sida 89</recipe:reference>
+	</recipe:recipe>
+	<recipe:recipe>
+		<recipe:key>SPENATCREME</recipe:key>
+		<recipe:name>Spenatcrème med vitlök</recipe:name>
+		<recipe:type>SIDE_ORDER_ROOT</recipe:type>
+		<recipe:reference>Sida 91</recipe:reference>
+	</recipe:recipe>
+	<recipe:recipe>
+		<recipe:key>BLOMKALSMOS</recipe:key>
+		<recipe:name>Blomkålsmos</recipe:name>
+		<recipe:type>SIDE_ORDER_ROOT</recipe:type>
+		<recipe:reference>Sida 19</recipe:reference>
+	</recipe:recipe>
+	<recipe:recipe>
+		<recipe:key>BROCCOLI</recipe:key>
+		<recipe:name>Lättkokt broccoli</recipe:name>
+		<recipe:type>SIDE_ORDER_ROOT</recipe:type>
+		<recipe:reference>Sida 19</recipe:reference>
+	</recipe:recipe>
+	<recipe:recipe>
+		<recipe:key>ROD_PAPRIKA</recipe:key>
+		<recipe:name>Röd paprika</recipe:name>
+		<recipe:type>SIDE_ORDER_GREEN</recipe:type>
+		<recipe:reference>Sida 19</recipe:reference>
+	</recipe:recipe>
+	<recipe:recipe>
+		<recipe:key>KOKTA_RODBETOR</recipe:key>
+		<recipe:name>Kokta rödbetor</recipe:name>
+		<recipe:type>SIDE_ORDER_ROOT</recipe:type>
+		<recipe:reference>Sida 23</recipe:reference>
+	</recipe:recipe>
+	<recipe:recipe>
+		<recipe:key>GUACAMOLE</recipe:key>
+		<recipe:name>Guacamole</recipe:name>
+		<recipe:type>SIDE_ORDER_ROOT</recipe:type>
+		<recipe:reference>Sida 33</recipe:reference>
+	</recipe:recipe>
+	<recipe:recipe>
+		<recipe:key>TOMAT_RODLOK_ENKEL</recipe:key>
+		<recipe:name>Tomat och rödlöksringar</recipe:name>
+		<recipe:type>SIDE_ORDER_GREEN</recipe:type>
+		<recipe:reference>Sida 43</recipe:reference>
+	</recipe:recipe>
+	<recipe:recipe>
+		<recipe:key>TOMATSALLAD_RODLOK</recipe:key>
+		<recipe:name>Tomatsallad med rödlök</recipe:name>
+		<recipe:type>SIDE_ORDER_GREEN</recipe:type>
+		<recipe:reference>Sida 71</recipe:reference>
+	</recipe:recipe>
+	<recipe:recipe>
+		<recipe:key>TSATSIKI_GURKA</recipe:key>
+		<recipe:name>Tsatsiki med gurka</recipe:name>
+		<recipe:type>SIDE_ORDER_GREEN</recipe:type>
+		<recipe:reference>Sida 71</recipe:reference>
+	</recipe:recipe>
+	<recipe:recipe>
+		<recipe:key>GRONSAKSMOS</recipe:key>
+		<recipe:name>Grönsaksmos</recipe:name>
+		<recipe:type>SIDE_ORDER_ROOT</recipe:type>
+		<recipe:reference>Sida 84</recipe:reference>
+	</recipe:recipe>
+	<recipe:recipe>
+		<recipe:key>ROTMOS_VARIERAD</recipe:key>
+		<recipe:name>Rotmos varierad</recipe:name>
+		<recipe:type>SIDE_ORDER_ROOT</recipe:type>
+	</recipe:recipe>
+	<recipe:recipe>
+		<recipe:key>GRONSALLAD</recipe:key>
+		<recipe:name>Grönsallad</recipe:name>
+		<recipe:type>SIDE_ORDER_GREEN</recipe:type>
+	</recipe:recipe>
+	<recipe:recipe>
+		<recipe:key>BROCCOLI_PURJOLOK</recipe:key>
+		<recipe:name>Blomkål, purjolök och rotselleri</recipe:name>
+		<recipe:type>SIDE_ORDER_ROOT</recipe:type>
+	</recipe:recipe>
+	<recipe:recipe>
+		<recipe:key>PIZZASALLAD</recipe:key>
+		<recipe:name>Pizzasallad</recipe:name>
+		<recipe:type>SIDE_ORDER_ROOT</recipe:type>
+		<recipe:ingredients>
+			<recipe:ingredient>
+				<recipe:name>Vitkål</recipe:name>
+				<recipe:amount>500</recipe:amount>
+				<recipe:unit>GRAM</recipe:unit>
+			</recipe:ingredient>
+			<recipe:ingredient>
+				<recipe:name>Olivolja</recipe:name>
+				<recipe:amount>2</recipe:amount>
+				<recipe:unit>TSP</recipe:unit>
+			</recipe:ingredient>
+			<recipe:ingredient>
+				<recipe:name>Vitvinsvinäger</recipe:name>
+				<recipe:amount>1.5</recipe:amount>
+				<recipe:unit>PCS</recipe:unit>
+			</recipe:ingredient>
+		</recipe:ingredients>
+		<recipe:preparation>
+			<recipe:time>20</recipe:time>
+			<recipe:steps>
+				<recipe:step>Strimla vitkålen</recipe:step>
+				<recipe:step>Salta</recipe:step>
+				<recipe:step>Knåda eller stöt (som i en mortel)</recipe:step>
+				<recipe:step>Häll över olja, vinäger och peppar</recipe:step>
+				<recipe:step>Rör om</recipe:step>
+				<recipe:step>Låt stå i kylskåp, minst 2 timmar, helst halvt eller helt dygn</recipe:step>
+			</recipe:steps>
+		</recipe:preparation>
+	</recipe:recipe>
+</recipe:recipes>

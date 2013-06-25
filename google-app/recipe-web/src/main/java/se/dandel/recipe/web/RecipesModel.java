@@ -2,7 +2,10 @@ package se.dandel.recipe.web;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
@@ -11,8 +14,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.model.SelectItem;
 
 import se.dandel.recipe.Recipe;
-import se.dandel.recipe.RecipeType;
-import se.dandel.recipe.service.RecipeService;
+import se.dandel.recipe.RecipeService;
 
 import com.google.inject.Inject;
 
@@ -33,15 +35,20 @@ public class RecipesModel implements Serializable {
     @PostConstruct
     public void init() {
         logger.info("Initializing model");
-        List<Recipe> recipes = recipeService.findAllRecipes();
+        Collection<Recipe> recipes = recipeService.findAllRecipes();
+
+        recipes.addAll(recipeService.load(getClass().getResource("/recipes.xml")));
+
+        Set<String> types = new HashSet<>();
         for (Recipe recipe : recipes) {
             items.add(new RecipeItem(recipe));
+            types.add(recipe.getType());
         }
 
         typeOptions = new ArrayList<>();
         typeOptions.add(new SelectItem("", "Alla"));
-        for (RecipeType type : RecipeType.values()) {
-            typeOptions.add(new SelectItem(type.name()));
+        for (String type : types) {
+            typeOptions.add(new SelectItem(type));
         }
     }
 

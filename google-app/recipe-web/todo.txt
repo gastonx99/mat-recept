@@ -1,0 +1,15 @@
+DONE Inläsning av XML
+
+Uppladdning av XML
+Nedsparande av recept från XML (skriv ej över existerande)
+
+Översättning av TYPE (MEAT, FISH etc)
+Dölj id i listan
+
+Expandable rows i listan, visa detaljer
+
+Knapp för nytt recept
+
+Formulär för recept
+Öppna formulär för recept vid dubbelklick i listan
+Spara formulär
