@@ -1,0 +1,15 @@
+.ui-datatable-tablewrapper th,td {
+	text-align: left !important;
+}
+
+.recipe-ingredients th {
+	background: #003946 !important;
+	text-align: left;
+}
+
+.recipe-table  {
+}
+
+.recipe-expanded-sub-table  {
+	width: 1% !important;
+}

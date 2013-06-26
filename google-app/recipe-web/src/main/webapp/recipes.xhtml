@@ -8,6 +8,7 @@
 	<title>Recipes</title>
 </h:head>
 <h:body id="body">
+	<h:outputStylesheet name="css/recipes.css" />
 	<h:form>
 		<p:fieldset legend="Sök/Filter" toggleable="true">
 			<h:panelGrid columns="4" cellpadding="10">
@@ -21,20 +22,57 @@
 			</h:panelGrid>
 		</p:fieldset>
 
-		<p:dataTable id="dataTable" var="recipe" value="#{recipesView.items}" widgetVar="recipesTable"
-			emptyMessage="Inga recept kunde hittas för valda kriterier">
-			<f:facet name="header">Recept</f:facet>
+		<p:fieldset legend="Recept">
+			<p:dataTable id="dataTable" var="recipe" value="#{recipesView.items}" widgetVar="recipesTable"
+				styleClass="recipe-table" selectionMode="single" selection="#{recipesForm.selectedRecipe}" rowKey="#{recipe.id}"
+				dblClickSelect="true">
 
-			<p:column sortBy="#{recipe.type}" headerText="Type">
-				<h:outputText value="#{recipe.type}" />
-			</p:column>
-			<p:column sortBy="#{recipe.id}" headerText="Id">
-				<h:outputText value="#{recipe.id}" />
-			</p:column>
-			<p:column sortBy="#{recipe.name}" headerText="Name">
-				<h:outputText value="#{recipe.name}" />
-			</p:column>
-		</p:dataTable>
+				<p:ajax event="rowDblselect" listener="#{recipesController.editRecipe}"/>
+
+				<p:column style="width:1%">
+					<p:rowToggler />
+				</p:column>
+				<p:column sortBy="#{recipe.type}" headerText="Type" style="width:1%">
+					<h:outputText value="#{recipe.type}" />
+				</p:column>
+				<p:column sortBy="#{recipe.name}" headerText="Name" style="width: 1%">
+					<h:outputText value="#{recipe.name}" />
+				</p:column>
+				<p:column sortBy="#{recipe.preparationTime}" headerText="Time">
+					<h:outputText value="#{recipe.preparationTime}" />
+				</p:column>
+
+
+				<p:rowExpansion>
+					<p:fieldset legend="Ingredients" toggleable="true">
+						<p:dataTable value="#{recipe.ingredients}" var="ingredient" styleClass="recipe-expanded-sub-table"
+							rendered="#{not empty recipe.ingredients}">
+							<p:column headerText="Name">
+								<h:outputText value="#{ingredient.name}" />
+							</p:column>
+							<p:column headerText="Amount">
+								<h:outputText value="#{ingredient.amount}" />
+							</p:column>
+							<p:column headerText="Unit">
+								<h:outputText value="#{ingredient.unit}" />
+							</p:column>
+						</p:dataTable>
+					</p:fieldset>
+					<p:fieldset legend="Steps" toggleable="true">
+						<p:dataTable var="step" value="#{recipe.steps}" styleClass="recipe-expanded-sub-table"
+							rendered="#{not empty recipe.steps}">
+							<p:column headerText="&nbsp;">
+								<h:outputText value="#{step.step}" />
+							</p:column>
+						</p:dataTable>
+					</p:fieldset>
+				</p:rowExpansion>
+			</p:dataTable>
+		</p:fieldset>
+
+		<f:metadata>
+			<f:event type="preRenderView" listener="#{recipesController.load}" />
+		</f:metadata>
 	</h:form>
 	<p:messages globalOnly="true" autoUpdate="true" />
 </h:body>
