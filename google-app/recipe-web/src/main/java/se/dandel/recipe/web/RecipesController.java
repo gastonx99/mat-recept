@@ -7,7 +7,6 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.logging.Logger;
 
-import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
@@ -31,34 +30,35 @@ public class RecipesController implements Serializable {
     @ManagedProperty(value = "#{recipesForm}")
     private RecipesForm recipesForm;
 
+    @ManagedProperty(value = "#{editRecipeController}")
+    private EditRecipeController editRecipeController;
+
     @Inject
     private RecipeService recipeService;
 
     public void load() {
-        logger.info("Initializing model");
-        Collection<Recipe> recipes = recipeService.findAllRecipes();
+        if (!FacesContext.getCurrentInstance().isPostback()) {
+            logger.info("Initializing model");
+            Collection<Recipe> recipes = recipeService.findAllRecipes();
 
-        recipes.addAll(recipeService.load(getClass().getResource("/recipes.xml")));
+            recipes.addAll(recipeService.load(getClass().getResource("/recipes.xml")));
 
-        Set<String> types = new HashSet<>();
-        Collection<RecipeItem> items = new ArrayList<>();
-        for (Recipe recipe : recipes) {
-            items.add(new RecipeItem(recipe));
-            types.add(Types.get(recipe.getType()));
+            Set<String> types = new HashSet<>();
+            Collection<RecipeItem> items = new ArrayList<>();
+            for (Recipe recipe : recipes) {
+                items.add(new RecipeItem(recipe));
+                types.add(Types.get(recipe.getType()));
+            }
+
+            recipesModel.setItems(items);
+            recipesModel.setTypes(types);
         }
-
-        recipesModel.setItems(items);
-        recipesModel.setTypes(types);
-
     }
 
     public void editRecipe(SelectEvent event) {
         recipesModel.setSelectedRecipe((RecipeItem) event.getObject());
 
-        FacesContext context = FacesContext.getCurrentInstance();
-        ConfigurableNavigationHandler navigationHandler = (ConfigurableNavigationHandler) context.getApplication()
-                .getNavigationHandler();
-        navigationHandler.performNavigation("edit-recipe?faces-redirect=true");
+        editRecipeController.editRecipe(recipesModel.getSelectedRecipe());
     }
 
     public void setRecipesModel(RecipesModel recipesModel) {
@@ -71,6 +71,10 @@ public class RecipesController implements Serializable {
 
     public void typeChange(AjaxBehaviorEvent e) {
         logger.info("typeChange: " + recipesForm.getSelectedType());
+    }
+
+    public void setEditRecipeController(EditRecipeController editRecipeController) {
+        this.editRecipeController = editRecipeController;
     }
 
 }

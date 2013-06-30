@@ -34,6 +34,7 @@ public class RecipeXmlDao {
         Recipe recipe = new Recipe(r.getKey());
         recipe.setName(r.getName());
         recipe.setType(r.getType());
+        recipe.setReference(r.getReference());
 
         IngredientsType ingredients = r.getIngredients();
         if (ingredients != null) {

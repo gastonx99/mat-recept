@@ -13,6 +13,7 @@ public class Recipe implements Serializable {
 
     private final RecipeId id;
     private String name;
+    private String reference;
     private String type;
     private List<RecipeIngredient> ingredients = new ArrayList<>();
     private List<String> steps = new ArrayList<>();
@@ -65,6 +66,14 @@ public class Recipe implements Serializable {
 
     public List<String> getSteps() {
         return steps;
+    }
+
+    public String getReference() {
+        return reference;
+    }
+
+    public void setReference(String reference) {
+        this.reference = reference;
     }
 
 }

@@ -27,7 +27,8 @@
 				styleClass="recipe-table" selectionMode="single" selection="#{recipesForm.selectedRecipe}" rowKey="#{recipe.id}"
 				dblClickSelect="true">
 
-				<p:ajax event="rowDblselect" listener="#{recipesController.editRecipe}"/>
+				<p:ajax event="rowDblselect" listener="#{recipesController.editRecipe}" update=":edit-recipe-form:edit-recipe-dialog"
+					oncomplete="editRecipeDialogWidget.show()" />
 
 				<p:column style="width:1%">
 					<p:rowToggler />
@@ -75,5 +76,8 @@
 		</f:metadata>
 	</h:form>
 	<p:messages globalOnly="true" autoUpdate="true" />
+
+	<ui:include src="edit-recipe.xhtml" />
+
 </h:body>
 </html>

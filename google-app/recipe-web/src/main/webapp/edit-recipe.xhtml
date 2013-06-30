@@ -1,17 +1,110 @@
 <!DOCTYPE html 
      PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" xmlns:f="http://java.sun.com/jsf/core"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui">
-<h:head id="head">
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Edit recipe</title>
-</h:head>
-<h:body id="body">
-	<h:outputStylesheet name="css/edit-recipe.css" />
-	<h:form>
-		<h:outputText value="#{editRecipeView.recipe.name}" />
+	<h:outputStylesheet library="css" name="edit-recipe.css" />
+	<h:outputScript library="js" name="edit-recipe.js" />
+	<h:form id="edit-recipe-form">
+		<p:dialog id="edit-recipe-dialog" header="#{editRecipeView.recipe.name}" widgetVar="editRecipeDialogWidget"
+			modal="true" height="800">
+			<p:panelGrid columns="2">
+				<h:outputLabel value="Type" for="recipe-type" />
+				<p:inputText id="recipe-type" value="#{editRecipeForm.type}" size="40" />
+
+				<h:outputLabel value="Id" for="recipe-id" />
+				<p:inputText id="recipe-id" value="#{editRecipeForm.id}" size="40" />
+
+				<h:outputLabel value="Name" for="recipe-name" />
+				<p:inputText id="recipe-name" value="#{editRecipeForm.name}" size="40" />
+
+				<h:outputLabel value="Reference" for="recipe-reference" />
+				<p:inputText id="recipe-reference" value="#{editRecipeForm.reference}" size="40" />
+			</p:panelGrid>
+			<p:spacer />
+			<p:panelGrid columns="2">
+				<p:fieldset legend="Ingredients" style="width: 500px;">
+					<p:dataTable id="edit-recipe-ingredients-table" value="#{editRecipeForm.ingredients}" var="ingredient"
+						editable="true" scrollable="true" scrollHeight="400" widgetVar="editRecipeIngredientsTable" rowIndexVar="rowIndex">
+
+						<p:ajax event="rowEditInit" oncomplete="editingIngredient()" />
+
+						<p:column width="30">
+							<p:rowEditor />
+						</p:column>
+						<p:column width="10">
+							<p:commandLink id="deleteLink" styleClass="ui-icon ui-icon-trash"
+								action="#{editRecipeController.deleteIngredient(rowIndex)}" update="edit-recipe-ingredients-table" />
+						</p:column>
+						<p:column headerText="Name" width="180">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{ingredient.name}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText id="nameInput" value="#{ingredient.name}" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<p:column headerText="Amount" width="80">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{ingredient.amount}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText id="amountInput" value="#{ingredient.amount}" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<p:column headerText="Unit" width="80">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{ingredient.unit}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText id="unitInput" value="#{ingredient.unit}" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<f:facet name="footer">
+							<p:commandButton value="+" actionListener="#{editRecipeController.newIngredient}"
+								update="edit-recipe-ingredients-table" oncomplete="afterNewIngredientAdded()" />
+						</f:facet>
+					</p:dataTable>
+				</p:fieldset>
+				<p:fieldset legend="Steps" style="width: 500px;">
+					<p:dataTable id="edit-recipe-steps-table" value="#{editRecipeForm.steps}" var="step" editable="true"
+						scrollable="true" scrollHeight="400" widgetVar="editRecipeStepsTable" rowIndexVar="rowIndex">
+
+						<p:ajax event="rowEditInit" oncomplete="editingStep()" />
+
+						<p:column width="30">
+							<p:rowEditor />
+						</p:column>
+						<p:column width="10">
+							<p:commandLink id="deleteLink" styleClass="ui-icon ui-icon-trash"
+								action="#{editRecipeController.deleteStep(rowIndex)}" update="edit-recipe-steps-table" />
+						</p:column>
+						<p:column headerText="Name" width="340">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{step.name}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText id="nameInput" value="#{step.name}" style="width: 95%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<f:facet name="footer">
+							<p:commandButton value="+" actionListener="#{editRecipeController.newStep}" update="edit-recipe-steps-table"
+								oncomplete="afterNewStepAdded()" />
+						</f:facet>
+					</p:dataTable>
+				</p:fieldset>
+			</p:panelGrid>
+			<f:facet name="footer">
+				<p:commandButton value="OK" oncomplete="editRecipeDialogWidget.hide()" />
+			</f:facet>
+		</p:dialog>
 	</h:form>
-	<p:messages globalOnly="true" autoUpdate="true" />
-</h:body>
-</html>
+</ui:composition>

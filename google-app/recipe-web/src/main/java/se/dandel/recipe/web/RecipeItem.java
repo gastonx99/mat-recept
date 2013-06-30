@@ -27,12 +27,16 @@ public class RecipeItem implements Serializable {
         }
     }
 
-    public Object getId() {
+    public String getId() {
         return recipe.getId().getId();
     }
 
     public String getName() {
         return recipe.getName();
+    }
+
+    public String getReference() {
+        return recipe.getReference();
     }
 
     public String getType() {
