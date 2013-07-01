@@ -8,9 +8,12 @@ import javax.faces.bean.ManagedProperty;
 
 import org.primefaces.event.RowEditEvent;
 
+import se.dandel.recipe.Recipe;
+import se.dandel.recipe.RecipeId;
 import se.dandel.recipe.RecipeService;
 import se.dandel.recipe.web.EditRecipeForm.Ingredient;
 import se.dandel.recipe.web.EditRecipeForm.Step;
+import se.dandel.recipe.xml.RecipeIngredient;
 
 import com.google.inject.Inject;
 
@@ -49,6 +52,7 @@ public class EditRecipeController implements Serializable {
 
         RecipeItem r = recipesModel.getSelectedRecipe();
         form.setName(r.getName());
+        form.setOriginalId(r.getId());
         form.setId(r.getId());
         form.setReference(r.getReference());
         form.setType(r.getType());
@@ -80,5 +84,28 @@ public class EditRecipeController implements Serializable {
 
     public void deleteStep(int rowIndex) {
         form.deleteStep(rowIndex);
+    }
+
+    public void saveRecipe() {
+        logger.fine("Saving recipe " + form.getName() + ", original id: " + form.getOriginalId() + ", and new id: "
+                + form.getId());
+
+        Recipe recipe = new Recipe(form.getId());
+        recipe.setType(Types.lookup(form.getType()));
+        recipe.setName(form.getName());
+        recipe.setReference(form.getReference());
+        recipe.setPreparationTime(form.getPreparationTime());
+        for (Ingredient ingredient : form.getIngredients()) {
+            RecipeIngredient i = new RecipeIngredient();
+            i.setName(ingredient.getName());
+            i.setAmount(ingredient.getAmount());
+            i.setUnit(ingredient.getUnit());
+            recipe.addIngredient(i);
+        }
+        for (Step step : form.getSteps()) {
+            recipe.addStep(step.getName());
+        }
+
+        recipeService.saveRecipe(recipe, new RecipeId(form.getOriginalId()));
     }
 }

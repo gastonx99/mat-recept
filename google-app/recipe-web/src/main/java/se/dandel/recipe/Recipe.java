@@ -1,7 +1,6 @@
 package se.dandel.recipe;
 
 import java.io.Serializable;
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,8 +47,8 @@ public class Recipe implements Serializable {
         this.ingredients.add(ingredient);
     }
 
-    public void setPreparationTime(BigInteger time) {
-        this.preparationTime = time == null ? null : time.longValue();
+    public void setPreparationTime(long time) {
+        this.preparationTime = time;
     }
 
     public void addStep(String step) {

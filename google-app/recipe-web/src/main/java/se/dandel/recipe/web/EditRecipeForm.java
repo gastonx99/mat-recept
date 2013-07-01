@@ -17,6 +17,8 @@ public class EditRecipeForm implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    private String originalId;
+
     private String id;
 
     private String name;
@@ -28,6 +30,8 @@ public class EditRecipeForm implements Serializable {
     private List<Ingredient> ingredients = new ArrayList<>();
 
     private List<Step> steps = new ArrayList<>();
+
+    private long preparationTime;
 
     public static class Step {
         private String name;
@@ -179,6 +183,22 @@ public class EditRecipeForm implements Serializable {
     public void deleteStep(int rowIndex) {
         logger.info("Deleting step " + rowIndex);
         steps.remove(rowIndex);
+    }
+
+    public String getOriginalId() {
+        return originalId;
+    }
+
+    public void setOriginalId(String originalId) {
+        this.originalId = originalId;
+    }
+
+    public long getPreparationTime() {
+        return preparationTime;
+    }
+
+    public void setPreparationTime(long preparationTime) {
+        this.preparationTime = preparationTime;
     }
 
 }

@@ -1,5 +1,6 @@
 package se.dandel.recipe.xml;
 
+import java.math.BigInteger;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -49,7 +50,8 @@ public class RecipeXmlDao {
 
         PreparationType preparation = r.getPreparation();
         if (preparation != null) {
-            recipe.setPreparationTime(preparation.getTime());
+            BigInteger time = preparation.getTime();
+            recipe.setPreparationTime(time == null ? null : time.longValue());
             List<String> list = preparation.getSteps().getStep();
             for (String step : list) {
                 recipe.addStep(step);

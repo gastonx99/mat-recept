@@ -25,10 +25,10 @@ public class RecipesController implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @ManagedProperty(value = "#{recipesModel}")
-    private RecipesModel recipesModel;
+    private RecipesModel model;
 
     @ManagedProperty(value = "#{recipesForm}")
-    private RecipesForm recipesForm;
+    private RecipesForm form;
 
     @ManagedProperty(value = "#{editRecipeController}")
     private EditRecipeController editRecipeController;
@@ -47,30 +47,30 @@ public class RecipesController implements Serializable {
             Collection<RecipeItem> items = new ArrayList<>();
             for (Recipe recipe : recipes) {
                 items.add(new RecipeItem(recipe));
-                types.add(Types.get(recipe.getType()));
+                types.add(recipe.getType());
             }
 
-            recipesModel.setItems(items);
-            recipesModel.setTypes(types);
+            model.setItems(items);
+            model.setTypes(types);
         }
     }
 
     public void editRecipe(SelectEvent event) {
-        recipesModel.setSelectedRecipe((RecipeItem) event.getObject());
+        model.setSelectedRecipe((RecipeItem) event.getObject());
 
-        editRecipeController.editRecipe(recipesModel.getSelectedRecipe());
+        editRecipeController.editRecipe(model.getSelectedRecipe());
     }
 
-    public void setRecipesModel(RecipesModel recipesModel) {
-        this.recipesModel = recipesModel;
+    public void setModel(RecipesModel model) {
+        this.model = model;
     }
 
-    public void setRecipesForm(RecipesForm recipesForm) {
-        this.recipesForm = recipesForm;
+    public void setForm(RecipesForm form) {
+        this.form = form;
     }
 
     public void typeChange(AjaxBehaviorEvent e) {
-        logger.info("typeChange: " + recipesForm.getSelectedType());
+        model.setSelectedType(form.getSelectedType());
     }
 
     public void setEditRecipeController(EditRecipeController editRecipeController) {

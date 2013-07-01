@@ -55,4 +55,8 @@ public class RecipeItem implements Serializable {
         return steps;
     }
 
+    Recipe getRecipe() {
+        return recipe;
+    }
+
 }

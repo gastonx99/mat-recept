@@ -23,4 +23,14 @@ public class RecipeService {
         return recipeXmlDao.load(url);
     }
 
+    public void saveRecipe(Recipe recipe, RecipeId originalId) {
+        Recipe storedRecipe;
+        if (recipe.getId().equals(originalId)) {
+            storedRecipe = recipeDao.get(recipe.getId());
+        } else {
+            storedRecipe = recipeDao.find(originalId);
+        }
+
+    }
+
 }

@@ -2,6 +2,7 @@ package se.dandel.recipe.web;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -11,35 +12,36 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.model.SelectItem;
 
-import org.apache.commons.lang.builder.CompareToBuilder;
-
 @ManagedBean
 public class RecipesView implements Serializable {
 
     private static final Logger logger = Logger.getLogger(RecipesView.class.getName());
 
-    private static final Comparator<RecipeItem> COMPARATOR_TYPE_NAME = new Comparator<RecipeItem>() {
+    private static final long serialVersionUID = 1L;
+
+    private static final Comparator<SelectItem> TYPE_COMPARATOR = new Comparator<SelectItem>() {
+
         @Override
-        public int compare(RecipeItem o1, RecipeItem o2) {
-            CompareToBuilder builder = new CompareToBuilder();
-            builder.append(o1.getType(), o2.getType());
-            builder.append(o1.getName(), o2.getName());
-            return builder.toComparison();
+        public int compare(SelectItem o1, SelectItem o2) {
+            return o1.getLabel().compareTo(o2.getLabel());
         }
     };
 
-    private static final long serialVersionUID = 1L;
-
     @ManagedProperty(value = "#{recipesModel}")
     private RecipesModel recipesModel;
+
+    private List<RecipeItem> items;
+
+    private List<SelectItem> typeOptions;
 
     public RecipesView() {
         logger.info("Instantiating");
     }
 
     public List<RecipeItem> getItems() {
-        List<RecipeItem> items = new ArrayList<>(recipesModel.getItems());
-        Collections.sort(items, COMPARATOR_TYPE_NAME);
+        if (items == null) {
+            items = new ArrayList<>(recipesModel.getItems());
+        }
         return items;
     }
 
@@ -48,13 +50,14 @@ public class RecipesView implements Serializable {
     }
 
     public List<SelectItem> getTypeOptions() {
-        List<String> sortedTypes = new ArrayList<>(recipesModel.getTypes());
-        Collections.sort(sortedTypes);
-
-        List<SelectItem> typeOptions = new ArrayList<>();
-        typeOptions.add(new SelectItem("", "Alla"));
-        for (String type : sortedTypes) {
-            typeOptions.add(new SelectItem(type));
+        if (typeOptions == null) {
+            Collection<String> types = recipesModel.getTypes();
+            typeOptions = new ArrayList<>(types.size() + 1);
+            for (String type : types) {
+                typeOptions.add(new SelectItem(type, Types.get(type)));
+            }
+            Collections.sort(typeOptions, TYPE_COMPARATOR);
+            typeOptions.add(0, new SelectItem("", "Alla"));
         }
         return typeOptions;
     }

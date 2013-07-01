@@ -10,4 +10,13 @@ public class RecipeDao {
         return list;
     }
 
+    public Recipe get(RecipeId id) {
+        return null;
+    }
+
+    public Recipe find(RecipeId originalId) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
 }

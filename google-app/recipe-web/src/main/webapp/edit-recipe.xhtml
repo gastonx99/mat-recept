@@ -8,6 +8,7 @@
 	<h:form id="edit-recipe-form">
 		<p:dialog id="edit-recipe-dialog" header="#{editRecipeView.recipe.name}" widgetVar="editRecipeDialogWidget"
 			modal="true" height="800">
+			<h:inputHidden value="#{editRecipeForm.originalId}" />
 			<p:panelGrid columns="2">
 				<h:outputLabel value="Type" for="recipe-type" />
 				<p:inputText id="recipe-type" value="#{editRecipeForm.type}" size="40" />
@@ -103,7 +104,9 @@
 				</p:fieldset>
 			</p:panelGrid>
 			<f:facet name="footer">
-				<p:commandButton value="OK" oncomplete="editRecipeDialogWidget.hide()" />
+				<p:commandButton value="Avbryt" oncomplete="editRecipeDialogWidget.hide()" />
+				<p:commandButton value="Spara" actionListener="#{editRecipeController.saveRecipe}"
+					oncomplete="editRecipeDialogWidget.hide()" />
 			</f:facet>
 		</p:dialog>
 	</h:form>

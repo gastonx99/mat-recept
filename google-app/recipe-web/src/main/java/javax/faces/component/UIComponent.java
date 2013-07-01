@@ -108,6 +108,7 @@ import javax.faces.render.Renderer;
  * </p>
  */
 
+@SuppressWarnings("deprecation")
 public abstract class UIComponent implements PartialStateHolder, TransientStateHolder, SystemEventListenerHolder,
         ComponentSystemEventListener {
 
@@ -372,6 +373,7 @@ public abstract class UIComponent implements PartialStateHolder, TransientStateH
      *             if <code>name</code> is <code>null</code>
      * 
      */
+    @SuppressWarnings("unchecked")
     public ValueExpression getValueExpression(String name) {
 
         if (name == null) {
@@ -427,6 +429,7 @@ public abstract class UIComponent implements PartialStateHolder, TransientStateH
      *             if <code>name</code> is <code>null</code>
      * 
      */
+    @SuppressWarnings("unchecked")
     public void setValueExpression(String name, ValueExpression binding) {
 
         if (name == null) {
@@ -948,6 +951,7 @@ public abstract class UIComponent implements PartialStateHolder, TransientStateH
      * 
      * @since 2.0
      */
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     public Map<String, String> getResourceBundleMap() {
 
         if (null == resourceBundleMap) {
@@ -1881,6 +1885,7 @@ public abstract class UIComponent implements PartialStateHolder, TransientStateH
 
     }
 
+    @SuppressWarnings("unchecked")
     private static ArrayDeque<UIComponent> _getComponentELStack(String keyName, Map<Object, Object> contextAttributes) {
         ArrayDeque<UIComponent> elStack = (ArrayDeque<UIComponent>) contextAttributes.get(keyName);
 
@@ -2249,6 +2254,7 @@ public abstract class UIComponent implements PartialStateHolder, TransientStateH
      * @throws NullPointerException
      *             if <code>clazz</code> is <code>null</code>
      */
+    @SuppressWarnings("rawtypes")
     protected abstract FacesListener[] getFacesListeners(Class clazz);
 
     /**
